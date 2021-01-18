@@ -1,0 +1,32 @@
+version: '3' 
+services:
+ pomodoro-db:
+  image: postgres
+  environment:
+    - POSTGRES_DB=pomodorodb
+    - POSTGRES_USER=root
+    - POSTGRES_PASSWORD=Someya1024
+  networks:
+    - pomodoronet
+  volumes:
+    - pomodoro_db_volume:/var/lib/postgresql/data
+  restart: always
+    
+ pomodoro-web: 
+   build: . 
+   command: python3 manage.py runserver 0.0.0.0:8001
+   volumes:
+     - .:/code
+   ports:
+     - "8001:8001"
+   restart: always
+   depends_on:
+     - pomodoro-db
+   networks:
+     - pomodoronet
+
+networks:
+ pomodoronet:
+
+volumes:
+ pomodoro_db_volume:
