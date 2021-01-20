@@ -6,12 +6,13 @@ services:
     - POSTGRES_DB=pomodorodb
     - POSTGRES_USER=root
     - POSTGRES_PASSWORD=Someya1024
+    - POSTGRES_HOST_AUTH_METHOD=trust
   networks:
     - pomodoronet
   volumes:
     - pomodoro_db_volume:/var/lib/postgresql/data
   restart: always
-    
+  
  pomodoro-web: 
    build: . 
    command: python3 manage.py runserver 0.0.0.0:8001
