@@ -23,6 +23,6 @@
  .btn-primary{background-color:#ee0979;border-color:#ee0979}
  .btn-primary:active,.btn-primary:focus,.btn-primary:hover{background-color:#bd0760!important;border-color:#bd0760!important}
  .btn-primary:focus{box-shadow:0 0 0 .2rem rgba(238,9,121,.5)}
- .btn-secondary{background-color:#ff6a00;border-color:#ff6a00}
+ .btn-secondary{background-color:#ff6a00;border-color:#ff6a00;border-radius:100px;margin-left: 10px;}
  .btn-secondary:active,.btn-secondary:focus,.btn-secondary:hover{background-color:#c50!important;border-color:#c50!important}
  .btn-secondary:focus{box-shadow:0 0 0 .2rem rgba(255,106,0,.5)}
