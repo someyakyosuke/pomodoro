@@ -44,12 +44,18 @@
                 </li>
               </ul>
               <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
                 <li>
-                  <a class="btn btn-secondary" href="#">Log In</a>
+                  <a class="btn btn-secondary" href="{% url 'account_logout' %}">Log Out</a>
                 </li>
-                <li>
-                  <a class="btn btn-secondary" href="#">SIGN UP</a>
+                {% else %}
+                <li class = "{% block active_login %}{% endblock %}">
+                  <a class="btn btn-secondary" href="{% url 'account_login' %}">Log In</a>
                 </li>
+                <li class="{% block active_signup %}{% endblock %}">
+                  <a class="btn btn-secondary" href="{% url 'account_signup' %}">SIGN UP</a>
+                </li>
+                {% endif %}
               </ul>
             </div>
           </div>

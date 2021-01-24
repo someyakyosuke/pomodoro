@@ -9,6 +9,10 @@ RUN mkdir /code
 WORKDIR /code
 #requirements.txtをコンテナ内にコピー
 COPY requirements.txt /code/
+#pipのアップグレード
+RUN pip install --upgrade pip
 # pythonとデータベース接続器をインストール
 RUN pip install -r requirements.txt
+
+
 
