@@ -22,6 +22,8 @@
 
     <!-- My style -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/mystyle.css' %}">
+    <!-- javascript -->
+    <script src="{% static 'javascript/pomodoro.js' %}"></script>
     {% block head %}{% endblock %}
   </head>
 
@@ -60,11 +62,11 @@
             </div>
           </div>
         </nav>
-        <div class = "inhtml">
+        
         {% block header%}{% endblock %}
         
         {% block contents%}{% endblock %}
-        </div>
+        
         <!-- Footer -->
         <footer class="py-5 bg-black">
           <div class="container">

@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}ポモドーロテクニック＋あなたの集中度を見える化 | pomodoro_memory{% endblock %}
+{% block title %}ポモドーロタイマー＋あなたの集中力を見える化 | pomodoro_memory{% endblock %}
 
 {% block header%}
 <header class="masthead text-center text-white">
   <div class="masthead-content">
     <div class="container">
-      
-      <a>ポモドーロのアプリを挿入予定</a>
+      <div class="timer">
+        <form name="timer">
+          <input type="text" value="">分
+          <input type="text" value="">秒<br>
+          <input type="button" value="スタート" onclick="cntStart()">
+          <input type="button" value="ストップ" onclick="cntStop()">
+        </form>
+      </div>
+      <div class="row">
+        <a href="{% url 'account_login' %}" class="btn btn-primary btn-xl rounded-pill mt-5">LOG IN</a>
+      </div>
+      </div>
     </div>
   </div>
 
