@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <title>トップページ</title>
-    </head>
-    <body>
-        <h1>Hello World</h1>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ポモドーロタイマー＋あなたの集中力を見える化 | pomodoro_memory{% endblock %}
+
+{% block header%}
+
+  
+    <div class="pomodorotimer">
+      <div hidden></div>
+      <canvas id="rectangle"></canvas>
+      <!-- worktimer -->
+        <div class="clock" id="js-clock">
+          <span id="minutes">15</span>
+          <span class="semicron">:</span>
+          <span id="seconds">00</span>
+        </div>
+      
+      <!-- breaktimer--> 
+        <div class="pomobtn">
+          <button class="timerstart" id="start">START</button>
+          <button class="reset" id="reset">RESET</button>
+        </div>
+    </div>
+  
+
+
+<!-- javascript -->
+<script src="{% static 'javascript/pomodoro.js' %}"></script>
+{% endblock %}
+
+{% block contents %}
+
+{% endblock %}

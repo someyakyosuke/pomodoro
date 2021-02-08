@@ -1,0 +1,80 @@
+body, #wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.row{
+    margin-top:100px;
+}
+
+.timer{
+    color:black;
+}
+
+.clock {
+    margin-top:20px;
+    margin-bottom:120px;
+    margin-right:auto;
+    margin-left:auto;
+    font-size: 10rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    font-family: 'Share Tech Mono', monospace;
+    color:white;
+    width:450px;
+   
+  }
+  .timerstart{
+      font-size: 3rem;
+      display: inline-block;
+      padding: 0.5em 1em 0.3em;
+      color: #ff3399;
+      border: double 4px #ff3399;
+      background-color: #ffffff;
+      cursor: pointer;
+      align-items: left;
+      width:255.49px;
+      margin-right: 40px;
+      z-index: 10;
+  }
+  .reset{
+      font-size: 3rem;
+      display: inline-block;
+      padding: 0.5em 1em 0.3em;
+      color: #ff3399;
+      border: double 4px #ff3399;
+      background-color: #ffffff;
+      cursor: pointer;
+      width:255.49px;
+      z-index: 10;
+  }
+  .pomodorotimer{
+      width:800px;
+      height:70rem;
+      margin-top:-300px;
+      margin-left:auto;
+      margin-right: auto;
+      background: radial-gradient( #68b0d1,#296c92);
+      text-align: center;
+      position: relative;
+  }
+  .pomobtn{
+      
+      width: 550px;
+      display: flex;
+      margin:auto;
+  }
+  #rectangle{
+      margin:auto;
+      position: relative;
+      top: 400px;
+      width: 800px;
+      height:500px;
+  }
+    
