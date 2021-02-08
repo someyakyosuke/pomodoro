@@ -41,6 +41,7 @@ footer {
       align-items: left;
       width:255.49px;
       margin-right: 40px;
+      z-index: 10;
   }
   .reset{
       font-size: 3rem;
@@ -51,6 +52,7 @@ footer {
       background-color: #ffffff;
       cursor: pointer;
       width:255.49px;
+      z-index: 10;
   }
   .pomodorotimer{
       width:800px;
