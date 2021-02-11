@@ -77,4 +77,10 @@ footer {
       width: 800px;
       height:500px;
   }
-    
+  #sentaku{
+      color:black
+  }
+  .sentaku{
+      color:black;
+      z-index: 10;
+  }

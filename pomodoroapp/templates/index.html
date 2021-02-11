@@ -4,10 +4,23 @@
 {% block title %}ポモドーロタイマー＋あなたの集中力を見える化 | pomodoro_memory{% endblock %}
 
 {% block header%}
-
+    <!-- 変更箇所　2021年０２月０９日-->
+    {% if user.is_authenticated %}
+    <div class="sentaku">
+      <form method="POST">
+          {% csrf_token %}
+        <table id="sentaku">
+          {% for field in form %}
+            <td>{{ field }}</td>
+          {% endfor %}
+        </table>
+        <p><input type="submit" value="送信"></p>
+      </form>
+    </div>
+    {% endif %}
   
     <div class="pomodorotimer">
-      <div hidden></div>
+      
       <canvas id="rectangle"></canvas>
       <!-- worktimer -->
         <div class="clock" id="js-clock">
