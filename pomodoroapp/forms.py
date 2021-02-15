@@ -12,5 +12,8 @@ class SampleForm(forms.ModelForm):
         widgets={
             'shuutyuudo': forms.RadioSelect()
         }
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.fields['shuutyuudo'].widget.attrs["class"]="shuutyuu"
 
     

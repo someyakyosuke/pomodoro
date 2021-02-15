@@ -89,6 +89,11 @@ function timer(){
                 sec=0;
                 timeflg = 1;
             }
+            if(document.getElementById("exampleModalCenter") != null){
+                stopInterval();
+                startTimer = undefined;
+                $('#exampleModalCenter').modal();
+            }
         }else{
             minutes.innerText = 15;
             min=15;
@@ -156,4 +161,14 @@ onload = function() {
         }
     }
     draw();
+  }
+
+  //モーダルの処理
+  //$('#exampleModalCenter').on('shown.bs.modal', function () {
+    //$('#myInput').trigger('focus')
+  //})
+
+  function modalbutton(){
+    $('#exampleModalCenter').modal('hide');
+    startTimer = setInterval(timer, 1000);
   }

@@ -84,3 +84,22 @@ footer {
       color:black;
       z-index: 10;
   }
+
+  .shuutyuu{
+    list-style: none;
+    display: -webkit-inline-box;
+  }
+  .shuutyuu li{
+      padding-left: 20px;
+  }
+  .sentaku{
+      position: absolute;
+      top: 500px;
+      width: 800px;
+      height:500px;
+      z-index: 11;
+      background-color: white;
+      border: 1px solid; /* 線の太さと可視化 */
+      border-radius: 8px; /* 左上を角丸に */
+
+}
