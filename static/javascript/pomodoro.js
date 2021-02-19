@@ -176,23 +176,38 @@ onload = function() {
   }
 
   //モーダルで送信を押したときの内部ajaxの記述
-  $("form").submit(function(event) {
-    event.preventDefault();
-    var form = $(this);
-    $.ajax({
-      url: form.prop("action"),
-      method: form.prop("method"),
-      data: form.serialize(),
-      timeout: 10000,
-      dataType: "text",
-      success: function(data){
-        console.log("marker saved");
-        },
-        error: function(data){
-        console.log("marker not saved");
-         }
+  $(document).ready(function(){
+    var $myForm = $('.my-ajax-form')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+        console.log($formData)
+        console.log($thisURL)
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+        $('#exampleModalCenter').modal('hide');
+        startTimer = setInterval(timer, 1000);
     })
-    $('#exampleModalCenter').modal('hide');
-    startTimer = setInterval(timer, 1000);
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+        console.log(data)
+        console.log(textStatus)
+        console.log(jqXHR)
+        //$myForm.reset(); // reset form data
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+        console.log(jqXHR)
+        console.log(textStatus)
+        console.log(errorThrown)
+    }
+
+    
 
 });

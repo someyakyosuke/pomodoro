@@ -22,7 +22,7 @@
               </div>
               <div class="modal-body">
                   <img id="yajirusi" src="{% static 'img/yajirusi.png' %}" alt="矢印">
-                  <form action="" method="POST">
+                  <form class='my-ajax-form' action="" method="POST" data-url="{% url 'pomodoroapp:index' %}">
                       {% csrf_token %}
                     <table id="sentaku">
                       {% for field in form %}
