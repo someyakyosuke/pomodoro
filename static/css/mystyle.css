@@ -90,7 +90,10 @@ footer {
     display: -webkit-inline-box;
   }
   .shuutyuu li{
-      padding-left: 20px;
+      padding-left: 18px;
+  }
+  ul{
+      margin-left:-32px;
   }
   .sentaku{
       position: absolute;
@@ -101,5 +104,8 @@ footer {
       background-color: white;
       border: 1px solid; /* 線の太さと可視化 */
       border-radius: 8px; /* 左上を角丸に */
+    }
 
-}
+    #yajirusi{
+        margin-bottom:20px;
+    }

@@ -108,6 +108,7 @@ function timer(){
 
 //Stop Timer Function
 function stopInterval(){
+
     clearInterval(startTimer);
 }
 
@@ -168,7 +169,30 @@ onload = function() {
     //$('#myInput').trigger('focus')
   //})
 
+  //モーダルを閉じてポモドーロ再開用の記述
   function modalbutton(){
     $('#exampleModalCenter').modal('hide');
     startTimer = setInterval(timer, 1000);
   }
+
+  //モーダルで送信を押したときの内部ajaxの記述
+  $("form").submit(function(event) {
+    event.preventDefault();
+    var form = $(this);
+    $.ajax({
+      url: form.prop("action"),
+      method: form.prop("method"),
+      data: form.serialize(),
+      timeout: 10000,
+      dataType: "text",
+      success: function(data){
+        console.log("marker saved");
+        },
+        error: function(data){
+        console.log("marker not saved");
+         }
+    })
+    $('#exampleModalCenter').modal('hide');
+    startTimer = setInterval(timer, 1000);
+
+});

@@ -5,7 +5,7 @@
 
 {% block header%}
     
-  
+    
     <div class="pomodorotimer">
         <!-- 変更箇所　2021年０２月０９日-->
       {% if user.is_authenticated %}
@@ -21,22 +21,24 @@
                 </button>
               </div>
               <div class="modal-body">
-                  <form method="POST">
-                    {% csrf_token %}
-                  <table id="sentaku">
-                    {% for field in form %}
-                    <table>
-                      <tr> <td>{{ field }}</td></tr>
+                  <img id="yajirusi" src="{% static 'img/yajirusi.png' %}" alt="矢印">
+                  <form action="" method="POST">
+                      {% csrf_token %}
+                    <table id="sentaku">
+                      {% for field in form %}
+                      <table>
+                        <tr> <td>{{ field }}</td></tr>
+                      </table>
+                      {% endfor %}
                     </table>
-                    {% endfor %}
-                  </table>
                   
-                </form>
+                  
               </div>
               <div class="modal-footer">
-                <p><input type="submit" value="送信" onclick="modalbutton()"></p>
+                <p><input type="submit" value="送信"></p>
                 <button type="button" class="btn btn-secondary" onclick="modalbutton()">Close</button>
               </div>
+              </form>
             </div>
           </div>
         </div>
@@ -59,6 +61,13 @@
           <button class="timerstart" id="start">START</button>
           <button class="reset" id="reset">RESET</button>
         </div>
+        {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
     </div>
   
 
