@@ -61,14 +61,16 @@
           <button class="timerstart" id="start">START</button>
           <button class="reset" id="reset">RESET</button>
         </div>
-        {% if messages %}
+        
     <ul class="messages">
+      {% if messages %}
       {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <li  {% if message.tags %} class="{{ message.tags }} default_message"{% endif %}>{{ message }}</li>
       {% endfor %}
+        
+      {% endif %}
+      
     </ul>
-    {% endif %}
-    </div>
   
 
 

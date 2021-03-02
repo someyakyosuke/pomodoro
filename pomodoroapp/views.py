@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
 from .models import Focus
@@ -26,10 +27,11 @@ class AjaxFormMixin(object):
         print('有効で saveまでできてますよ')
         if self.request.is_ajax():
             messages.success(self.request,'ただいまの時間の集中度を記録しました')
+            return HttpResponse('ただいまの時間の集中度を記録しました')
         else:
             messages.success(self.request,'ajaxでないただいまの時間の集中度を記録しました')
-        response = super(AjaxFormMixin, self).form_valid(form)
-        return response
+            response = super(AjaxFormMixin, self).form_valid(form)
+            return response
 
 # Create your views here.
 class IndexView(AjaxFormMixin,generic.CreateView):

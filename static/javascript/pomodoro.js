@@ -184,6 +184,7 @@ onload = function() {
         var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
         console.log($formData)
         console.log($thisURL)
+
         $.ajax({
             method: "POST",
             url: $thisURL,
@@ -191,7 +192,10 @@ onload = function() {
             success: handleFormSuccess,
             error: handleFormError,
         })
+        
+        
         $('#exampleModalCenter').modal('hide');
+        
         startTimer = setInterval(timer, 1000);
     })
 
@@ -199,7 +203,9 @@ onload = function() {
         console.log(data)
         console.log(textStatus)
         console.log(jqXHR)
-        //$myForm.reset(); // reset form data
+        $(".messages").append('<li id="message_ajax">' + data + '</li>');
+        setTimeout("$('#message_ajax').fadeOut('slow').queue(function(){this.remove()})", 3000)
+        //setTimeout("$('.messages').fadeOut('slow').queue(function(){this.remove()})", 3000);
     }
 
     function handleFormError(jqXHR, textStatus, errorThrown){
@@ -207,7 +213,9 @@ onload = function() {
         console.log(textStatus)
         console.log(errorThrown)
     }
-
     
-
 });
+    //メッセージタグが時間がたつと消えるように設定
+$(function(){
+    setTimeout("$('.default_message').fadeOut('slow').queue(function(){this.remove()})", 3000)
+})
