@@ -56,8 +56,8 @@ footer {
   }
   .pomodorotimer{
       width:800px;
-      height:70rem;
-      margin-top:-300px;
+      height:65rem;
+      margin-top:-200px;
       margin-left:auto;
       margin-right: auto;
       background: radial-gradient( #68b0d1,#296c92);
@@ -109,3 +109,15 @@ footer {
     #yajirusi{
         margin-bottom:20px;
     }
+
+    .today{
+        margin-top:200px;
+        color:black;
+    }
+    .today p{
+        text-align: center;
+    }
+    .default_message{
+        margin-top:200px;
+    }
+

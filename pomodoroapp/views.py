@@ -6,6 +6,7 @@ from .models import Focus
 from .forms import SampleForm
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.utils import timezone
 
 #ajax用に追加
 class AjaxFormMixin(object):
@@ -42,3 +43,11 @@ class IndexView(AjaxFormMixin,generic.CreateView):
 
 class GraphView(generic.TemplateView):
     template_name="graph.html"
+    model = Focus
+    def get_context_data(self, **kwargs):
+        # 継承元のメソッド呼び出し
+        context = super().get_context_data(**kwargs) 
+        today = timezone.now().date()
+        print(today)
+        context['graph_data'] = Focus.objects.filter(user=self.request.user,start_at__date=today)
+        return context

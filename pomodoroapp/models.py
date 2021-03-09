@@ -25,4 +25,4 @@ class Focus(models.Model):
     class Meta:
         verbose_name_plural='Focus'
     def __str__(self):
-        return self.shuutyuudo
+        return "{}-{}".format(self.shuutyuudo,self.start_at)

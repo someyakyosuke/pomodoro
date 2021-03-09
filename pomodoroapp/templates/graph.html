@@ -4,15 +4,90 @@
 {% block title %}集中度グラフ | pomodoro_memory{% endblock %}
 
 {% block header%}
-<header class="masthead text-center text-white">
-  <div class="masthead-content">
-    <div class="container">
-      
 
+
+
+    <div class="container today">
+      <p>{% now "F" %}{% now "j" %}日({% now "l" %})</p>
+      <canvas id="graph" height="70px"></canvas>
     </div>
-  </div>
+    <div>
+      {{graph_data}}
+      
+      
+    </div>
+    
 
-</header>
+
+<script src="{% static 'javascript/moment-with-locales.min.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script type="text/javascript">
+  /* idが"radar-chart"の要素を取得 */
+var ctx = document.getElementById("graph");
+
+/* 上記要素にチャートを描画　*/
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      
+      labels: [{% for item in graph_data %}"{{item.start_at|date:"H:i"}}",{% endfor %}],
+      datasets: [
+        {
+          label: '集中度(点）',
+          data: [
+                {% for item2 in graph_data %}{{item2.shuutyuudo}},{% endfor %}
+                ],
+      
+          borderColor: "rgba(0,0,255,1)",
+          backgroundColor: "rgba(0,0,0,0)"
+        }
+      ]
+    },
+    options: {
+      legend: {
+      display: false
+      },
+      title: {
+        display: true,
+        text: '集中度(1点～10点)'
+      },
+      scales: {
+        xAxes: [{
+          
+          //軸ラベル表示
+          scaleLabel: {
+              display: true,
+              labelString: '時間'
+          },
+          //ここで軸に時間を設定する
+          type: 'time',
+          time: {
+              parser: 'HH:mm',
+              unit: 'hour',
+              stepSize: 1,
+              min: "00:00",
+              max: "24:00",
+              displayFormats: {
+                  'hour': 'HH:mm'
+              }
+          },
+          
+      }],
+        yAxes: [{
+          ticks: {
+            suggestedMax: 10,
+            suggestedMin: 0,
+            stepSize: 1,
+            callback: function(value, index, values){
+              return  value
+            }
+          }
+        }]
+      },
+    }
+  });
+</script>
+
 {% endblock %}
 
 {% block contents %}
