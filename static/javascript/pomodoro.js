@@ -203,7 +203,7 @@ onload = function() {
         console.log(data)
         console.log(textStatus)
         console.log(jqXHR)
-        $(".messages").append('<li id="message_ajax">' + data + '</li>');
+        $(".messages").append('<li class="alertsuccess alert-success" id="message_ajax">' + data + '</li>');
         setTimeout("$('#message_ajax').fadeOut('slow').queue(function(){this.remove()})", 3000)
         //setTimeout("$('.messages').fadeOut('slow').queue(function(){this.remove()})", 3000);
     }

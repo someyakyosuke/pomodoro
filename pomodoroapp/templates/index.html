@@ -5,7 +5,18 @@
 
 {% block header%}
     
+    <div class=messageblock>
+      <ul class="messages">
+        {% if messages %}
+        {% for message in messages %}
+          <li  {% if message.tags %} class="alert{{ message.tags }} alert-{{ message.tags }} default_message"{% endif %}>{{ message }}</li>
+        {% endfor %}
+          
+        {% endif %}
     
+      </ul>
+
+    </div>
     <div class="pomodorotimer">
         <!-- 変更箇所　2021年０２月０９日-->
       {% if user.is_authenticated %}
@@ -45,15 +56,7 @@
 
           <!-- 
            -->
-          <ul class="messages">
-            {% if messages %}
-            {% for message in messages %}
-              <li  {% if message.tags %} class="{{ message.tags }} default_message"{% endif %}>{{ message }}</li>
-            {% endfor %}
-              
-            {% endif %}
-        
-          </ul>
+
     {% endif %}
 
       <canvas id="rectangle"></canvas>
@@ -71,7 +74,6 @@
         </div>
 
       </div>
-  
 
 
 <!-- javascript -->

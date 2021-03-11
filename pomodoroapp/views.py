@@ -7,6 +7,8 @@ from .forms import SampleForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils import timezone
+from django.utils.timezone import localtime # 追加（日本時間にするため）
+from datetime import datetime, date,timedelta
 
 #ajax用に追加
 class AjaxFormMixin(object):
@@ -47,7 +49,8 @@ class GraphView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         # 継承元のメソッド呼び出し
         context = super().get_context_data(**kwargs) 
-        today = timezone.now().date()
+        today = localtime(timezone.now()).date()
         print(today)
+        print('この上でタイムゾーンが出力されます')
         context['graph_data'] = Focus.objects.filter(user=self.request.user,start_at__date=today)
         return context

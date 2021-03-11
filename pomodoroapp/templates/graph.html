@@ -8,14 +8,14 @@
 
 
     <div class="container today">
-      <p>{% now "F" %}{% now "j" %}日({% now "l" %})</p>
+      <div class="day_brock">
+        <img class="day_graph" id="nijuuyajirusi" style="transform: scale(-1, 1);" src="{% static 'img/nijuuyajirusi.png' %}" width="60" height="40"  alt="二重矢印">
+        <p class="day_graph">{% now "F" %}{% now "j" %}日({% now "l" %})</p>
+        <img class="day_graph" id="nijuuyajirusi" src="{% static 'img/nijuuyajirusi.png' %}" width="60" height="40" alt="二重矢印">
+      </div>
       <canvas id="graph" height="70px"></canvas>
     </div>
-    <div>
-      {{graph_data}}
-      
-      
-    </div>
+
     
 
 

@@ -56,8 +56,8 @@ footer {
   }
   .pomodorotimer{
       width:800px;
-      height:65rem;
-      margin-top:-200px;
+      height:60rem;
+      margin-top:-300px;
       margin-left:auto;
       margin-right: auto;
       background: radial-gradient( #68b0d1,#296c92);
@@ -117,7 +117,21 @@ footer {
     .today p{
         text-align: center;
     }
-    .default_message{
-        margin-top:200px;
+    .messageblock{
+        height:100px;
+        background-color: white;
+        z-index:1;
+    }
+    .messages{
+        margin-top:80px;
     }
 
+    .day_graph{
+        display: inline;
+        
+    }
+    .day_brock{
+        text-align: center;
+        margin-bottom:30px;
+    }
+    
