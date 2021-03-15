@@ -9,13 +9,22 @@
 
     <div class="container today">
       <div class="day_brock">
-        <img class="day_graph" id="nijuuyajirusi" style="transform: scale(-1, 1);" src="{% static 'img/nijuuyajirusi.png' %}" width="60" height="40"  alt="二重矢印">
-        <p class="day_graph">{% now "F" %}{% now "j" %}日({% now "l" %})</p>
-        <img class="day_graph" id="nijuuyajirusi" src="{% static 'img/nijuuyajirusi.png' %}" width="60" height="40" alt="二重矢印">
+        <button type="button" class="btn" value="-1">
+          <img class="day_graph" id="nijuuyajirusi" style="transform: scale(-1, 1);" src="{% static 'img/nijuuyajirusi.png' %}" width="60" height="40"  alt="二重矢印">
+        </button>
+
+        <p class="day_graph"><span id="month_python">{% now "n" %}</span>月<span id="day_python">{% now "j" %}</span>日(<span id="youbi">{% now "l" %}</span>)</p>
+
+        <button type="button" class="btn" value="1">
+          <img class="day_graph" id="nijuuyajirusi" src="{% static 'img/nijuuyajirusi.png' %}" width="60" height="40" alt="二重矢印">
+        </button>
       </div>
       <canvas id="graph" height="70px"></canvas>
     </div>
-
+    <!-- 隠しデータ(urlをjavascriptに送信) -->
+    <input id="url_data" type="hidden" value="{% url 'pomodoroapp:graph' %}">
+    <input id="year_python" type="hidden" value="{% now "Y" %}">
+    {% csrf_token %}
     
 
 
@@ -87,7 +96,8 @@ var myChart = new Chart(ctx, {
     }
   });
 </script>
-
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'javascript/graph.js' %}"></script>
 {% endblock %}
 
 {% block contents %}

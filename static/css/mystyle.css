@@ -31,7 +31,7 @@ footer {
    
   }
   .timerstart{
-      font-size: 3rem;
+      font-size: 2rem;
       display: inline-block;
       padding: 0.5em 1em 0.3em;
       color: #ff3399;
@@ -44,7 +44,7 @@ footer {
       z-index: 10;
   }
   .reset{
-      font-size: 3rem;
+      font-size: 2rem;
       display: inline-block;
       padding: 0.5em 1em 0.3em;
       color: #ff3399;
