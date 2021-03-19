@@ -17,7 +17,8 @@
       </ul>
 
     </div>
-    <div class="pomodorotimer">
+    <video class="video" src="{% static 'video/water.mp4' %}" autoplay playsinline muted loop></video>
+    
         <!-- 変更箇所　2021年０２月０９日-->
       {% if user.is_authenticated %}
       
@@ -58,7 +59,7 @@
            -->
 
     {% endif %}
-
+    <div id="pomodorotimer" class="pomodorotimer">
       <canvas id="rectangle"></canvas>
       <!-- worktimer -->
         <div class="clock" id="js-clock">
@@ -74,7 +75,7 @@
         </div>
 
       </div>
-
+    
 
 <!-- javascript -->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>

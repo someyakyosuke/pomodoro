@@ -32,7 +32,8 @@ start.addEventListener('click', function(){
 })
 
 reset.addEventListener('click', function(){
-    start.innerHTML="start"
+    timeflg = 0;
+    start.innerHTML="start";
     minutes.innerText = 15;
     min=15;
     seconds.innerText = "00";
@@ -82,12 +83,14 @@ function timer(){
                 sec=0;
                 timeflg = 2;
                 count=0;
+                documents.getElementById("pomodorotimer").style.opacity = "0.5" ;
             }else{
                 minutes.innerText = "05";
                 min=5;
                 seconds.innerText = "00";
                 sec=0;
                 timeflg = 1;
+                documents.getElementById("pomodorotimer").style.opacity = "0.5" ;
             }
             if(document.getElementById("exampleModalCenter") != null){
                 stopInterval();
@@ -100,6 +103,7 @@ function timer(){
             seconds.innerText = "00";
             sec=0;
             timeflg = 0;
+            documents.getElementById("pomodorotimer").style.opacity = "0.8" ;
             count++;
         }
         //document.getElementById('counter').innerText++;

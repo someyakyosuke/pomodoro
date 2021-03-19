@@ -69,11 +69,14 @@ class GraphView(generic.TemplateView):
             graph_timedata = []
             graph_shuutyuudata = []
             for item in object_data:
-                graph_timedata.append(item.start_at.strftime("%H:%M"))
+                graph_timedata.append(localtime(item.start_at).strftime("%H:%M"))
                 graph_shuutyuudata.append(int(item.shuutyuudo))
             print (graph_timedata)
             print (graph_shuutyuudata)
             return JsonResponse({'graph_time':graph_timedata,'graph_shuutyuu':graph_shuutyuudata},status=200)
+
+class SetumeiView(generic.TemplateView):
+    template_name="setumei.html"
 
 
     

@@ -42,10 +42,12 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                  {% if user.is_authenticated %}
                   <a class="nav-link" href="{% url 'pomodoroapp:graph' %}">集中度グラフ</a>
+                  {% endif %}
                 </li>
                 <li class="nav-item {% block active_inquiry %}{% endblock %}">
-                  <a class="nav-link" href="#">使用方法</a>
+                  <a class="nav-link" href="{% url 'pomodoroapp:setumei' %}">使用方法</a>
                 </li>
               </ul>
               <ul class="navbar-nav ml-auto">
