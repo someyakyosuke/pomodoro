@@ -11,7 +11,7 @@ var sec=0
 
 var minutes = document.getElementById('minutes');
 var seconds= document.getElementById('seconds');
-
+var opa = document.getElementById('pomodorotimer');
 //store a reference to a timer variable
 var startTimer;
 
@@ -83,14 +83,14 @@ function timer(){
                 sec=0;
                 timeflg = 2;
                 count=0;
-                documents.getElementById("pomodorotimer").style.opacity = "0.5" ;
+                opa.style.opacity = 0.5;
             }else{
                 minutes.innerText = "05";
                 min=5;
                 seconds.innerText = "00";
                 sec=0;
                 timeflg = 1;
-                documents.getElementById("pomodorotimer").style.opacity = "0.5" ;
+                opa.style.opacity = 0.5;
             }
             if(document.getElementById("exampleModalCenter") != null){
                 stopInterval();
@@ -103,7 +103,7 @@ function timer(){
             seconds.innerText = "00";
             sec=0;
             timeflg = 0;
-            documents.getElementById("pomodorotimer").style.opacity = "0.8" ;
+            opa.style.opacity = 0.8;
             count++;
         }
         //document.getElementById('counter').innerText++;
@@ -212,10 +212,12 @@ onload = function() {
         //setTimeout("$('.messages').fadeOut('slow').queue(function(){this.remove()})", 3000);
     }
 
-    function handleFormError(jqXHR, textStatus, errorThrown){
-        console.log(jqXHR)
+    function handleFormError(data, textStatus, errorThrown){
+        console.log(data)
         console.log(textStatus)
         console.log(errorThrown)
+        $(".messages").append('<li class="alertsuccess alert-success" id="message_ajax">' + data + '</li>');
+        setTimeout("$('#message_ajax').fadeOut('slow').queue(function(){this.remove()})", 3000)
     }
     
 });

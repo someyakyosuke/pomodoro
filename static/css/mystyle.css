@@ -145,10 +145,13 @@ footer {
         margin-bottom:30px;
     }
     .video{
+        margin:0 auto;
         width:100%;
         z-index:-10;
         position: relative;
     }
+    /* 画面が小さいときは保留 */
+
     .contents{
         margin-top:150px;
         margin-left:100px;
