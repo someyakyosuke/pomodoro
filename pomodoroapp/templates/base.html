@@ -17,8 +17,10 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel=”stylesheet” href=”https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css”>
+    
     <!-- Custom styles for this template -->
     <link href="{% static 'css/one-page-wonder.min.css' %}" rel="stylesheet">
 
@@ -40,10 +42,12 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                  {% if user.is_authenticated %}
                   <a class="nav-link" href="{% url 'pomodoroapp:graph' %}">集中度グラフ</a>
+                  {% endif %}
                 </li>
                 <li class="nav-item {% block active_inquiry %}{% endblock %}">
-                  <a class="nav-link" href="#">使用方法</a>
+                  <a class="nav-link" href="{% url 'pomodoroapp:setumei' %}">使用方法</a>
                 </li>
               </ul>
               <ul class="navbar-nav ml-auto">
@@ -76,6 +80,8 @@
         <!-- Bootstrap core JavaScript -->
         <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
         <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
   	</div>
   </body>
 

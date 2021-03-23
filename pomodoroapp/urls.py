@@ -4,5 +4,6 @@ from.import views
 app_name = 'pomodoroapp'
 urlpatterns = [
     path('',views.IndexView.as_view(),name="index"),
-    path('graph/',views.GraphView.as_view(),name="graph")
+    path('graph/',views.GraphView.as_view(),name="graph"),
+    path('setumei/',views.SetumeiView.as_view(),name="setumei")
 ]

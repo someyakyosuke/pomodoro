@@ -4,10 +4,62 @@
 {% block title %}ポモドーロタイマー＋あなたの集中力を見える化 | pomodoro_memory{% endblock %}
 
 {% block header%}
+    
+    <div class=messageblock>
+      <ul class="messages">
+        {% if messages %}
+        {% for message in messages %}
+          <li  {% if message.tags %} class="alert{{ message.tags }} alert-{{ message.tags }} default_message"{% endif %}>{{ message }}</li>
+        {% endfor %}
+          
+        {% endif %}
+    
+      </ul>
 
-  
-    <div class="pomodorotimer">
-      <div hidden></div>
+    </div>
+    <video class="video" src="{% static 'video/water.mp4' %}" autoplay playsinline muted loop></video>
+    
+        <!-- 変更箇所　2021年０２月０９日-->
+      {% if user.is_authenticated %}
+      
+    <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">ただいまの１５分間の集中度はどうでしたか？</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <img id="yajirusi" src="{% static 'img/yajirusi.png' %}" alt="矢印">
+                  <form class='my-ajax-form' action="" method="POST" data-url="{% url 'pomodoroapp:index' %}">
+                      {% csrf_token %}
+                    <table id="sentaku">
+                      {% for field in form %}
+                      <table>
+                        <tr> <td>{{ field }}</td></tr>
+                      </table>
+                      {% endfor %}
+                    </table>
+                  
+                  
+              </div>
+              <div class="modal-footer">
+                <p><input type="submit" value="送信"></p>
+                <button type="button" class="btn btn-secondary" onclick="modalbutton()">Close</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+          <!-- 
+           -->
+
+    {% endif %}
+    <div id="pomodorotimer" class="pomodorotimer">
       <canvas id="rectangle"></canvas>
       <!-- worktimer -->
         <div class="clock" id="js-clock">
@@ -21,11 +73,12 @@
           <button class="timerstart" id="start">START</button>
           <button class="reset" id="reset">RESET</button>
         </div>
-    </div>
-  
 
+      </div>
+    
 
 <!-- javascript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'javascript/pomodoro.js' %}"></script>
 {% endblock %}
 

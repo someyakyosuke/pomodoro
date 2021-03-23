@@ -17,7 +17,7 @@ footer {
 }
 
 .clock {
-    margin-top:20px;
+    margin-top:100px;
     margin-bottom:120px;
     margin-right:auto;
     margin-left:auto;
@@ -31,7 +31,8 @@ footer {
    
   }
   .timerstart{
-      font-size: 3rem;
+      position:absolute;
+      font-size: 2rem;
       display: inline-block;
       padding: 0.5em 1em 0.3em;
       color: #ff3399;
@@ -44,7 +45,11 @@ footer {
       z-index: 10;
   }
   .reset{
-      font-size: 3rem;
+      position:absolute;
+      left: 0;
+      right: -270;
+      margin: auto;
+      font-size: 2rem;
       display: inline-block;
       padding: 0.5em 1em 0.3em;
       color: #ff3399;
@@ -55,14 +60,17 @@ footer {
       z-index: 10;
   }
   .pomodorotimer{
-      width:800px;
-      height:70rem;
-      margin-top:-300px;
-      margin-left:auto;
-      margin-right: auto;
+      position: absolute;
+      top:150px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width:600px;
+      height:30rem;
       background: radial-gradient( #68b0d1,#296c92);
+      opacity: 0.8;
       text-align: center;
-      position: relative;
+ 
   }
   .pomobtn{
       
@@ -71,10 +79,92 @@ footer {
       margin:auto;
   }
   #rectangle{
-      margin:auto;
-      position: relative;
-      top: 400px;
+      position:absolute;
+      left: -100;
+      right: 0;
+      margin: auto;
+      text-align: center;
       width: 800px;
       height:500px;
   }
-    
+  #sentaku{
+      color:black
+  }
+  .sentaku{
+      color:black;
+      z-index: 10;
+  }
+
+  .shuutyuu{
+    list-style: none;
+    display: -webkit-inline-box;
+  }
+  .shuutyuu li{
+      padding-left: 18px;
+  }
+  ul{
+      margin-left:-32px;
+  }
+  .sentaku{
+      position: absolute;
+      top: 500px;
+      width: 800px;
+      height:500px;
+      z-index: 11;
+      background-color: white;
+      border: 1px solid; /* 線の太さと可視化 */
+      border-radius: 8px; /* 左上を角丸に */
+    }
+
+    #yajirusi{
+        margin-bottom:20px;
+    }
+
+    .today{
+        margin-top:200px;
+        color:black;
+    }
+    .today p{
+        text-align: center;
+    }
+    .messageblock{
+        height:100px;
+        background-color: white;
+        z-index:1;
+    }
+    .messages{
+        margin-top:80px;
+    }
+
+    .day_graph{
+        display: inline;
+        
+    }
+    .day_brock{
+        text-align: center;
+        margin-bottom:30px;
+    }
+    .video{
+        margin:0 auto;
+        width:100%;
+        z-index:-10;
+        position: relative;
+    }
+    /* 画面が小さいときは保留 */
+
+    .contents{
+        margin-top:150px;
+        margin-left:100px;
+    }
+    .contents h3{
+        padding: 1rem 2rem;
+        border-top: 3px solid #000;
+        border-bottom: 3px solid #000;
+        width:800px;
+    }
+    #gamen1{
+        width:600px;
+    }
+    #gamen3{
+        width:600px;
+    }

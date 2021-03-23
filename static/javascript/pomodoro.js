@@ -11,7 +11,7 @@ var sec=0
 
 var minutes = document.getElementById('minutes');
 var seconds= document.getElementById('seconds');
-
+var opa = document.getElementById('pomodorotimer');
 //store a reference to a timer variable
 var startTimer;
 
@@ -32,7 +32,8 @@ start.addEventListener('click', function(){
 })
 
 reset.addEventListener('click', function(){
-    start.innerHTML="start"
+    timeflg = 0;
+    start.innerHTML="start";
     minutes.innerText = 15;
     min=15;
     seconds.innerText = "00";
@@ -82,12 +83,19 @@ function timer(){
                 sec=0;
                 timeflg = 2;
                 count=0;
+                opa.style.opacity = 0.5;
             }else{
                 minutes.innerText = "05";
                 min=5;
                 seconds.innerText = "00";
                 sec=0;
                 timeflg = 1;
+                opa.style.opacity = 0.5;
+            }
+            if(document.getElementById("exampleModalCenter") != null){
+                stopInterval();
+                startTimer = undefined;
+                $('#exampleModalCenter').modal();
             }
         }else{
             minutes.innerText = 15;
@@ -95,6 +103,7 @@ function timer(){
             seconds.innerText = "00";
             sec=0;
             timeflg = 0;
+            opa.style.opacity = 0.8;
             count++;
         }
         //document.getElementById('counter').innerText++;
@@ -103,6 +112,7 @@ function timer(){
 
 //Stop Timer Function
 function stopInterval(){
+
     clearInterval(startTimer);
 }
 
@@ -157,3 +167,61 @@ onload = function() {
     }
     draw();
   }
+
+  //モーダルの処理
+  //$('#exampleModalCenter').on('shown.bs.modal', function () {
+    //$('#myInput').trigger('focus')
+  //})
+
+  //モーダルを閉じてポモドーロ再開用の記述
+  function modalbutton(){
+    $('#exampleModalCenter').modal('hide');
+    startTimer = setInterval(timer, 1000);
+  }
+
+  //モーダルで送信を押したときの内部ajaxの記述
+  $(document).ready(function(){
+    var $myForm = $('.my-ajax-form')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+        console.log($formData)
+        console.log($thisURL)
+
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+        
+        
+        $('#exampleModalCenter').modal('hide');
+        
+        startTimer = setInterval(timer, 1000);
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+        console.log(data)
+        console.log(textStatus)
+        console.log(jqXHR)
+        $(".messages").append('<li class="alertsuccess alert-success" id="message_ajax">' + data + '</li>');
+        setTimeout("$('#message_ajax').fadeOut('slow').queue(function(){this.remove()})", 3000)
+        //setTimeout("$('.messages').fadeOut('slow').queue(function(){this.remove()})", 3000);
+    }
+
+    function handleFormError(data, textStatus, errorThrown){
+        console.log(data)
+        console.log(textStatus)
+        console.log(errorThrown)
+        $(".messages").append('<li class="alertsuccess alert-success" id="message_ajax">' + data + '</li>');
+        setTimeout("$('#message_ajax').fadeOut('slow').queue(function(){this.remove()})", 3000)
+    }
+    
+});
+    //メッセージタグが時間がたつと消えるように設定
+$(function(){
+    setTimeout("$('.default_message').fadeOut('slow').queue(function(){this.remove()})", 3000)
+})
