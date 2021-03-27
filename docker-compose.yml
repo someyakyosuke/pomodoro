@@ -1,5 +1,25 @@
 version: '3' 
 services:
+
+ nginx:
+  image: nginx:1.19.2
+  ports:
+   - "8000:8000"
+  volumes:
+   - type: bind
+     source: "./nginx/conf"
+     target: "/etc/nginx/conf.d"
+   - type: bind
+     source: "./nginx/uwsgi_params"
+     target: "/etc/nginx/uwsgi_params"
+   - type: bind
+     source: "./static"
+     target: "/static"
+  depends_on:
+   - pomodoro-web
+  networks:
+   - pomodoronet
+
  pomodoro-db:
   image: postgres
   environment:
@@ -15,27 +35,17 @@ services:
   
  pomodoro-web: 
    build: . 
-   command: uwsgi --socket :8001 --module app.wsgi --py-autoreload 1 --logto /tmp/mylog.log
+   command: uwsgi --socket :8001 --module pomodoro.wsgi --py-autoreload 1 --logto /tmp/mylog.log
    volumes:
      - .:/code
      - ./static:/static
    expose:
      - "8001"
-   depends_on:
-     - pomodoro-db
    networks:
      - pomodoronet
+   depends_on:
+     - pomodoro-db
 
- nginx:
-   image: nginx:1.13
-   ports:
-    - "8000:8000"
-   volumes:
-    - ./nginx/conf:/etc/nginx/conf.d
-    - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
-    - ./static:/static
-    depends_on:
-      -pomodoro-web
       
 networks:
  pomodoronet:
