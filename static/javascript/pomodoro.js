@@ -134,10 +134,10 @@ onload = function() {
     
     /* rectangle */
     cvs.strokeStyle = "yellow";
-    cvs.lineWidth = 20;
+    cvs.lineWidth = 10;
     cvs.beginPath(); /* 図形を描き始めることを宣言(楕円) */
     cvs.scale(1,.45);
-    cvs.arc(1000, 640, 580, openradius * Math.PI / 180, 360 * Math.PI / 180, false);
+    cvs.arc(1000, 640, 570, openradius * Math.PI / 180, 360 * Math.PI / 180, false);
     cvs.stroke(); /* 描いた図形を線で表示させる */
     cvs.strokeStyle = "#7fff00";
     cvs.lineWidth = 10;
@@ -145,7 +145,7 @@ onload = function() {
     cvs.arc(1000, 640, 560, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
     cvs.stroke(); /* 描いた図形を線で表示させる */
     cvs.beginPath(); /* 図形を描き始めることを宣言(楕円) */
-    cvs.arc(1000, 640, 600, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
+    cvs.arc(1000, 640, 580, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
     cvs.stroke(); /* 描いた図形を線で表示させる */
   }
 

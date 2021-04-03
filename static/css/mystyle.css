@@ -17,11 +17,10 @@ footer {
 }
 
 .clock {
-    margin-top:100px;
-    margin-bottom:120px;
-    margin-right:auto;
-    margin-left:auto;
-    font-size: 10rem;
+    margin-top:50px;
+    margin-bottom:40px;
+    margin-left:157;
+    font-size: 5rem;
     line-height: 1;
     display: flex;
     align-items: center;
@@ -32,15 +31,16 @@ footer {
   }
   .timerstart{
       position:absolute;
-      font-size: 2rem;
+      left:50;
+      font-size: 1rem;
       display: inline-block;
-      padding: 0.5em 1em 0.3em;
+      padding: 0.5em 0.5em 0.3em;
       color: #ff3399;
       border: double 4px #ff3399;
       background-color: #ffffff;
       cursor: pointer;
       align-items: left;
-      width:255.49px;
+      width:130.49px;
       margin-right: 40px;
       z-index: 10;
   }
@@ -49,28 +49,31 @@ footer {
       left: 0;
       right: -270;
       margin: auto;
-      font-size: 2rem;
+      font-size: 1rem;
       display: inline-block;
       padding: 0.5em 1em 0.3em;
       color: #ff3399;
       border: double 4px #ff3399;
       background-color: #ffffff;
       cursor: pointer;
-      width:255.49px;
+      width:130.49px;
       z-index: 10;
   }
   .pomodorotimer{
-
-      top:150px;
-      left: 0;
-      right: 0;
-      margin: auto;
+      position:relative;
+      margin: 0 auto;
       width:600px;
-      height:30rem;
+      height:15rem;
       background: radial-gradient( #68b0d1,#296c92);
       opacity: 0.8;
       text-align: center;
  
+  }
+  .ifthen{
+      margin:40 auto;
+  }
+  .topic{
+      display: flex;
   }
   .pomobtn{
       
@@ -84,8 +87,8 @@ footer {
       right: 0;
       margin: auto;
       text-align: center;
-      width: 800px;
-      height:500px;
+      width: 600px;
+      height:250px;
   }
   #sentaku{
       color:black
