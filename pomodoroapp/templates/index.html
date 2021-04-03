@@ -17,7 +17,7 @@
       </ul>
 
     </div>
-    <video class="video" src="{% static 'video/water.mp4' %}" autoplay playsinline muted loop></video>
+
     
         <!-- 変更箇所　2021年０２月０９日-->
       {% if user.is_authenticated %}
@@ -73,9 +73,15 @@
           <button class="timerstart" id="start">START</button>
           <button class="reset" id="reset">RESET</button>
         </div>
-
+        
       </div>
-    
+      <div class="ifthen">
+        <h3>もし</h3>
+        <input>
+        <h3>たら</h3>
+        <input>
+        <h3>をする</h3>
+      </div>
 
 <!-- javascript -->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    #'django_ses',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pomodoro.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'pomodoro.wsgi.application'
 DATABASES = {
     'default': {
      'ENGINE': 'django.db.backends.postgresql',   
-     'NAME': 'pomodorodb',
-     'USER':'root', 
-     'PASSWORD':'Someya1024',
-     'HOST':'pomodoro-db',
+     'NAME': 'pomodoro_database',
+     'USER':'postgres', 
+     'PASSWORD':'10242048',
+     'HOST':'pomodoro-db.c7bqiituisks.us-east-2.rds.amazonaws.com',
      'PORT': 5432, 
     }
 }
@@ -141,6 +141,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # django-allauthで利用するdjango.contrib.sitesを使うためにサイト識別用IDを設定②
 SITE_ID = 1
 
+
 AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',  # 一般ユーザー用(メールアドレス認証)③
     'django.contrib.auth.backends.ModelBackend',  # 管理サイト用(ユーザー名認証)
@@ -155,8 +156,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
 
 #サインアップにメールアドレス確認をはさむよう設定
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_REQUIRED = True
+#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+#ACCOUNT_EMAIL_REQUIRED = True
 
 # ログイン/ログアウト後の遷移先を設定
 LOGIN_REDIRECT_URL = 'pomodoroapp:index'
@@ -171,4 +172,7 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 # デフォルトのメール送信元を設定
 DEFAULT_FROM_EMAIL = 'admin@example.com'
 
-
+#amazon SES設定
+#AWS_SES_ACCESS_KEY_ID = 'AKIAUJ3XXQ3S6VMSBUFI'
+#AWS_SES_SECRET_ACCESS_KEY = 'TY/CTss7z7K/MXqvT4Wn1DeSZb1GtiQHWOSbiNZB'
+#EMAIL_BACKEND = 'django_ses.SESBackend'
