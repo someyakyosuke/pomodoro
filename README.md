@@ -4,7 +4,7 @@
 
 ## 開発環境
 使用言語:python
-OS: Linux
+OS: Ubuntu
 
 
 
