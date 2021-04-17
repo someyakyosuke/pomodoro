@@ -5,7 +5,7 @@
 
 {% block header%}
     
-    <div class=messageblock>
+    <div class=messageblock id="messageblock">
       <ul class="messages">
         {% if messages %}
         {% for message in messages %}
@@ -17,7 +17,7 @@
       </ul>
 
     </div>
-    <video class="video" src="{% static 'video/water.mp4' %}" autoplay playsinline muted loop></video>
+
     
         <!-- 変更箇所　2021年０２月０９日-->
       {% if user.is_authenticated %}
@@ -27,7 +27,7 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">ただいまの１５分間の集中度はどうでしたか？</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">ただいまの<span id="modal_minutes">１５</span>分間の集中度はどうでしたか？</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -59,27 +59,98 @@
            -->
 
     {% endif %}
+    <div class="kyukeigamen" id="kyukeigamen">
+      <video id="fire" class="video" src="{% static 'video/fire_loop.mp4' %}" autoplay playsinline muted loop></video>
+      <button type="button" class="kyukeiend" id="kyukeiend">休憩終了</button>
+    </div>
     <div id="pomodorotimer" class="pomodorotimer">
+      <button type="button" class="btn" id="haguruma">
+        <img  src="{% static 'img/haguruma.png' %}" alt="設定">
+      </button>
+      <!--設定アイコンをクリックしたときの設定画面を記述-->
+      <div class="settei" id=settei>
+        <br>
+        <p>タイマーの時間</p>
+        <input id="timer_minutes" min="1" max="99" type="number" value=25>
+        <p>休憩時間</p>
+        <input id="timer_kyukei" min="1" max="99" type="number" value=5>
+        <p>長休憩</p>
+        <input id="timer_tyokyukei" min="1" max="99" type="number" value=25>
+        <br>
+        <br>
+        <button id="timer_ok">OK</button>
+      </div>
       <canvas id="rectangle"></canvas>
       <!-- worktimer -->
         <div class="clock" id="js-clock">
-          <span id="minutes">15</span>
+          <span id="minutes">25</span>
           <span class="semicron">:</span>
           <span id="seconds">00</span>
         </div>
-      
+        
       <!-- breaktimer--> 
         <div class="pomobtn">
           <button class="timerstart" id="start">START</button>
           <button class="reset" id="reset">RESET</button>
+          <button type="button" class="kyukei" id="kyukei">休憩</button>
         </div>
 
       </div>
-    
+      <!--質問型アクションを以下に記述-->
+      <div class="pomobrock1">
+        <h4 class="midasi">質問型アクション</h4>
+        <div class="topic">
+          <h5 class="situmon" >だれが</h5>
+          <h5 class="situmon" >いつ</h5>
+          <h5 class="situmon" >どこで</h5>
+          <h5 class="situmon" >どうするか？</h5>
+          <button type="button" id="appendSitumon">追加</button>
+
+        </div>
+        <div class="topic">
+          <input id="who">
+          <input type="time" id="when">
+          <input id="where">
+          <input id="what">
+        </div>
+        <br>
+        <ul class="list_action" id="situmon_id">
+          <br>
+          <li>(例）　(自分の名前)は18:30にリビングの机の上で英語の教科書63ページを開いて勉強するか？</li>
+
+        </ul>
+      </div>
+      <!-- if-thenルールの項目を以下に記述-->
+      <div class="pomobrock2">
+        <h4 class="midasi">if-thenルール　<button id="settei2"><img src="{% static 'img/haguruma.png' %}" alt="設定"></button></h4>   
+        <br>
+        <div class="if_settei" id="if_settei">
+          <input id="moshi" value="もし">
+          <input id="tara" value="たら">
+          <input id="ru2" value="る">
+          <button id="if_ok">OK</button>
+        </div>
+        <br>
+
+        <div class="topic">
+          <h3 id="if">もし</h3>
+          <input id="if1">
+          <h3 id="then">たら</h3>
+          <input id="then1">
+          <h3 id="ru">る</h3>
+          <button type="button" id="appendTest">追加</button>
+        </div>
+        <br>
+        <ul class="list_action" id="if_id">
+          <br>
+          <li>(例）もしネットサーフィンがしたくなったら10回深呼吸をする</li>
+        </ul>
+      </div>
 
 <!-- javascript -->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'javascript/pomodoro.js' %}"></script>
+<script src="{% static 'javascript/topic.js' %}"></script>
 {% endblock %}
 
 {% block contents %}

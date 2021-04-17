@@ -15,17 +15,28 @@ services:
   
  pomodoro-web: 
    build: . 
-   command: python3 manage.py runserver 0.0.0.0:8001
+   command: uwsgi --socket :8001 --module app.wsgi --py-autoreload 1 --logto /tmp/mylog.log
    volumes:
      - .:/code
-   ports:
-     - "8001:8001"
-   restart: always
+     - ./static:/static
+   expose:
+     - "8001"
    depends_on:
      - pomodoro-db
    networks:
      - pomodoronet
 
+ nginx:
+   image: nginx:1.13
+   ports:
+    - "8000:8000"
+   volumes:
+    - ./nginx/conf:/etc/nginx/conf.d
+    - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+    - ./static:/static
+    depends_on:
+      -pomodoro-web
+      
 networks:
  pomodoronet:
 

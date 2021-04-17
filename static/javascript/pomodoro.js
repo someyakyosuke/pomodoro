@@ -6,12 +6,45 @@ var timeflg = 0;
 //ポモドーロのカウンター
 var count = 0;
 
-var min=15
-var sec=0
-
+var min=25;
+var sec=0;
+//ポモドーロタイマーの時間
 var minutes = document.getElementById('minutes');
 var seconds= document.getElementById('seconds');
 var opa = document.getElementById('pomodorotimer');
+//ポモドーロ設定画面の時間変数
+let timer_minutes = 25;
+let kyukei=5;
+let tyokyukei=25;
+
+//タイマーの時間変更timer_okを押したときの処理
+$("#timer_ok").click(function(){
+    timer_minutes = document.getElementById("timer_minutes").value;
+    kyukei = document.getElementById("timer_kyukei").value;
+    tyokyukei = document.getElementById("timer_tyokyukei").value;
+
+    document.getElementById("modal_minutes").innerText=timer_minutes;
+    if(timer_minutes<10){
+        minutes.innerText = "0" + timer_minutes;
+    }else{
+        minutes.innerText = timer_minutes;
+    }
+    
+    min=timer_minutes;
+    $( '#settei' ).slideToggle() ;
+
+    //resetをコピー
+    timeflg = 0;
+    start.innerHTML="start";
+    seconds.innerText = "00";
+    sec=0;
+    opa.style.opacity = 0.8;
+  //document.getElementById('counter').innerText = 0;
+    stopInterval();
+    startTimer = undefined;
+    openradius = 0;
+    draw();
+})
 //store a reference to a timer variable
 var startTimer;
 
@@ -34,10 +67,16 @@ start.addEventListener('click', function(){
 reset.addEventListener('click', function(){
     timeflg = 0;
     start.innerHTML="start";
-    minutes.innerText = 15;
-    min=15;
+    if(timer_minutes>9){
+        minutes.innerText = timer_minutes;
+    }else{
+        minutes.innerText = "0" + timer_minutes;
+    }
+    
+    min=timer_minutes;
     seconds.innerText = "00";
     sec=0;
+    opa.style.opacity = 0.8;
   //document.getElementById('counter').innerText = 0;
     stopInterval();
     startTimer = undefined;
@@ -77,16 +116,21 @@ function timer(){
     if(minutes.innerText == 0 && sec == 0){
         if(timeflg==0){
             if(count==3){
-                minutes.innerText = 25;
-                min=25;
+                minutes.innerText = tyokyukei;
+                min=tyokyukei;
                 seconds.innerText = "00";
                 sec=0;
                 timeflg = 2;
                 count=0;
                 opa.style.opacity = 0.5;
             }else{
-                minutes.innerText = "05";
-                min=5;
+                if(kyukei<10){
+                    minutes.innerText = "0" + kyukei;
+                }else{
+                    minutes.innerText = kyukei;
+                }
+                
+                min=kyukei;
                 seconds.innerText = "00";
                 sec=0;
                 timeflg = 1;
@@ -98,8 +142,8 @@ function timer(){
                 $('#exampleModalCenter').modal();
             }
         }else{
-            minutes.innerText = 15;
-            min=15;
+            minutes.innerText = timer_minutes;
+            min=timer_minutes;
             seconds.innerText = "00";
             sec=0;
             timeflg = 0;
@@ -134,18 +178,18 @@ onload = function() {
     
     /* rectangle */
     cvs.strokeStyle = "yellow";
-    cvs.lineWidth = 20;
+    cvs.lineWidth = 10;
     cvs.beginPath(); /* 図形を描き始めることを宣言(楕円) */
     cvs.scale(1,.45);
-    cvs.arc(910, 640, 580, openradius * Math.PI / 180, 360 * Math.PI / 180, false);
+    cvs.arc(1000, 640, 570, openradius * Math.PI / 180, 360 * Math.PI / 180, false);
     cvs.stroke(); /* 描いた図形を線で表示させる */
     cvs.strokeStyle = "#7fff00";
     cvs.lineWidth = 10;
     cvs.beginPath(); /* 図形を描き始めることを宣言(楕円) */
-    cvs.arc(910, 640, 560, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
+    cvs.arc(1000, 640, 560, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
     cvs.stroke(); /* 描いた図形を線で表示させる */
     cvs.beginPath(); /* 図形を描き始めることを宣言(楕円) */
-    cvs.arc(910, 640, 600, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
+    cvs.arc(1000, 640, 580, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
     cvs.stroke(); /* 描いた図形を線で表示させる */
   }
 
@@ -155,14 +199,14 @@ onload = function() {
         openradius == 0;
     }else{
         if(timeflg==0){
-            //15分×60秒
-            openradius = openradius + (360/(15*60));
+            //timer_minutes分×60秒
+            openradius = openradius + (360/(timer_minutes*60));
         }else if(timeflg==1){
-            //5分×60秒
-            openradius = openradius + (360/(5*60));
+            //kyukei分×60秒
+            openradius = openradius + (360/(kyukei*60));
         }else{
             //25分×60秒
-            openradius = openradius + (360/(25*60));
+            openradius = openradius + (360/(tyokyukei*60));
         }
     }
     draw();
@@ -224,4 +268,49 @@ onload = function() {
     //メッセージタグが時間がたつと消えるように設定
 $(function(){
     setTimeout("$('.default_message').fadeOut('slow').queue(function(){this.remove()})", 3000)
+})
+
+
+//if-thenルールの追加設定を記述
+$("#appendTest").click(function(){
+    
+    var ift = document.getElementById('if').innerHTML;
+    var if1 = document.getElementById('if1').value;
+    var then = document.getElementById('then').innerHTML;
+    var then1 = document.getElementById('then1').value;
+    var ru = document.getElementById('ru').innerHTML;
+    const list = document.createElement('li');
+    list.textContent = ift + if1 + then + then1 + ru
+    //このfunctionの中身を考える
+    document.getElementById('if_id').prepend(list)
+    
+});
+//設定画面を表示する
+$("#haguruma").click(function(){
+    $( '#settei' ).slideToggle() ;
+})
+//休憩(焚火の動画を表示する）
+$("#kyukei").click(function(){
+
+    document.getElementById("con-nav").style.display="none";
+    document.getElementById("messageblock").style.display="none";
+    document.getElementById("pomodorotimer").style.display="none";
+    document.getElementById("kyukeigamen").style.display="block";
+})
+//休憩終了処理
+$("#kyukeiend").click(function(){
+    document.getElementById("con-nav").style.display="block";
+    document.getElementById("messageblock").style.display="block";
+    document.getElementById("pomodorotimer").style.display="block";
+    document.getElementById("kyukeigamen").style.display="none";
+})
+
+//ifthenルールの文字の設定画面を表示する
+$("#settei2").click(function(){
+    $( '#if_settei' ).slideToggle() ;
+})
+$("#if_ok").click(function(){
+    document.getElementById("if").innerHTML = document.getElementById("moshi").value
+    document.getElementById("then").innerHTML = document.getElementById("tara").value
+    document.getElementById("ru").innerHTML = document.getElementById("ru2").value
 })

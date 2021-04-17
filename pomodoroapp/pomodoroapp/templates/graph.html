@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}集中度グラフ | pomodoro_memory{% endblock %}
+
+{% block header%}
+
+
+
+    <div class="container today">
+      <div class="day_brock">
+        <button type="button" class="btn" value="-1">
+          <img class="day_graph" id="nijuuyajirusi" style="transform: scale(-1, 1);" src="{% static 'img/nijuuyajirusi.png' %}" width="60" height="40"  alt="二重矢印">
+        </button>
+
+        <p class="day_graph"><span id="month_python">{% now "n" %}</span>月<span id="day_python">{% now "j" %}</span>日(<span id="youbi">{% now "l" %}</span>)</p>
+
+        <button type="button" class="btn" value="1">
+          <img class="day_graph" id="nijuuyajirusi" src="{% static 'img/nijuuyajirusi.png' %}" width="60" height="40" alt="二重矢印">
+        </button>
+      </div>
+      <canvas id="graph" height="70px"></canvas>
+    </div>
+    <!-- 隠しデータ(urlをjavascriptに送信) -->
+    <input id="url_data" type="hidden" value="{% url 'pomodoroapp:graph' %}">
+    <input id="year_python" type="hidden" value="{% now "Y" %}">
+    {% csrf_token %}
+    
+
+
+<script src="{% static 'javascript/moment-with-locales.min.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script type="text/javascript">
+  /* idが"radar-chart"の要素を取得 */
+var ctx = document.getElementById("graph");
+
+/* 上記要素にチャートを描画　*/
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      
+      labels: [{% for item in graph_data %}"{{item.start_at|date:"H:i"}}",{% endfor %}],
+      datasets: [
+        {
+          label: '集中度(点）',
+          data: [
+                {% for item2 in graph_data %}{{item2.shuutyuudo}},{% endfor %}
+                ],
+      
+          borderColor: "rgba(0,0,255,1)",
+          backgroundColor: "rgba(0,0,0,0)"
+        }
+      ]
+    },
+    options: {
+      legend: {
+      display: false
+      },
+      title: {
+        display: true,
+        text: '集中度(1点～10点)'
+      },
+      scales: {
+        xAxes: [{
+          
+          //軸ラベル表示
+          scaleLabel: {
+              display: true,
+              labelString: '時間'
+          },
+          //ここで軸に時間を設定する
+          type: 'time',
+          time: {
+              parser: 'HH:mm',
+              unit: 'hour',
+              stepSize: 1,
+              min: "00:00",
+              max: "24:00",
+              displayFormats: {
+                  'hour': 'HH:mm'
+              }
+          },
+          
+      }],
+        yAxes: [{
+          ticks: {
+            suggestedMax: 10,
+            suggestedMin: 0,
+            stepSize: 1,
+            callback: function(value, index, values){
+              return  value
+            }
+          }
+        }]
+      },
+    }
+  });
+</script>
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'javascript/graph.js' %}"></script>
+{% endblock %}
+
+{% block contents %}
+
+{% endblock %}
