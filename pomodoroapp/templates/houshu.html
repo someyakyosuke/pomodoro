@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}報酬感覚プランニングとは?|最新の生産性を上げるテクニックをADHD男がアプリ化するサイト{% endblock %}
+
+{% block header%}
+<div class="article">
+    <div class="left-brank"></div>
+    <div>
+        <section class="contents">
+            <h3>報酬感覚プランニングとは</h3>
+            <br>
+            　報酬感覚プランニングとはパレオな男さんの著書「ヤバい集中力」にて書かれている報酬の予感を
+            <br>自己のコントロール下に置き、脳を働かせやすいように作業内容を具体的にすることで<br>集中力をアップさせるテクニックです。
+            <br>
+            <h3>アプリ内での使用方法</h3>
+            <img src="{% static 'img/houshu620.PNG' %}" width="70%">
+            <br>
+            アプリ内の上記のボタンを押すとシート画面に移動します。
+            記入した内容はweb画面上に自動的に保存されるので自分の目的とするべきことを確認していきましょう。<br>
+            また、シート下のクリアボタンを押すことで入力した内容を全て削除することもできます。
+            <br><br>
+            <a href="{% url 'pomodoroapp:kihon' %}">報酬感覚プランニングへ</a>
+        </section>
+    </div>
+        <!-- サイドバーをここに挿入-->
+        {% include 'mokuji.html' %}
+</div>
+
+{% endblock %}

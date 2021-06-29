@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}if-thenルールとは？|最新の生産性を上げるテクニックをADHD男がアプリ化するサイト{% endblock %}
+
+{% block header%}
+
+<div class="article">
+    <div class="left-brank"></div>
+    <div>
+        <section class="contents">
+            <h3>if-thenルールとは</h3>
+            <br>
+            　if-thenルールとは自分がやるべきではない行動をしたくなるような状況をあらかじめ想定してその対処方法を
+            前もって考えておくことで自分が欲求にあらがうことのできる確率を上げるテクニックです。
+            <br>
+            <br>
+            <h3>アプリ内での使用方法</h3>
+            <img src="{% static 'img/ifthen1.PNG' %}" width="70%">
+            <br>
+            項目を入力してアプリ内の右端のボタンを押すと入力内容がリスト上に表示されます。
+            <br>このように前もって欲求が出たときの対処法を書くことで目の前の作業に集中できる確率が上がります。
+            <br>
+            <img src="{% static 'img/ifthen2.PNG' %}" width="70%">
+            <br>
+            
+        </section>
+    </div>
+    <!-- サイドバーをここに挿入-->
+    {% include 'mokuji.html' %}
+</div>
+{% endblock %}

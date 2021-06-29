@@ -13,3 +13,136 @@
 #what{
     width:400px;
 }
+.houshu{
+    width:500px;
+}
+.hyoudai{
+    width:270px;
+}
+.sumaho{
+    display:none;
+}
+@media screen and (max-width: 1024px){
+        .hyoudai{
+            display: none;
+        }
+        .sumaho{
+            display:block;
+        }
+}
+.kihonsettei{
+    padding-top:150px;
+    margin-top:-150px;
+}
+.jissensettei{
+    margin-top:-100px;
+    padding-top:150px;
+    margin-bottom:200px;
+}
+
+/*右サイドバーを記述*/
+
+  .side_var ul li{
+    width:200px;
+    color: #2d8fdd;
+    border-left: solid 6px #2d8fdd;/*左側の線*/
+    background: #f1f8ff;/*背景色*/
+    margin-bottom: 3px;/*下のバーとの余白*/
+    line-height: 1.5;
+    padding: 0.5em;
+    list-style-type: none!important;/*ポチ消す*/
+  }
+.article{
+    display:flex;
+    margin-top:120px;
+    margin-left:100px;
+}
+.left-brank{
+    width:100px;
+}
+
+.contents{
+    width:800px;
+    margin-right:80px;
+}
+.contents h1 {
+    padding: 0.5em;/*文字まわり（上下左右）の余白*/
+    width:350px;
+  }
+
+.contents h3{
+    padding: 1rem 2rem;
+    border-bottom: 3px solid #000;
+    background: #f4f4f4;
+}
+.btnpomo{
+    width:200px;
+    height:40px;
+    line-height:40px;
+    margin-bottom:50px;
+}
+.btnpomo a{
+    display:block;
+    width:100%;
+    height:100%;
+    text-decoration: none;
+    background:#8CD460;
+    text-align:center;
+    border:1px solid #FFFFFF;
+    color:#FFFFFF;
+    font-size:20px;
+    font-weight:bold;
+    border-radius:50px;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    box-shadow:0px 0px 0px 4px #8CD460 ;
+    transition: all 0.5s ease;
+}
+.btnpomo a:hover{
+    background:#A8FF73;
+    color:#999999;
+    margin-left:0px;
+    margin-top:0px;
+    border:1px solid #FFFFFF;
+    box-shadow:0px 0px 0px 4px #8CD460 ;
+}
+.situmonblock{
+    display:flex;
+}
+.situmonblock li{
+    width:500px;
+}
+.situmonblock div{
+    
+}
+.pomotech{
+  color: #668ad8; 
+  border: double 5px #668ad8;/*二重線 太さ 色*/
+  background: #f1f8ff; 
+  padding: 0.5em 0.5em 0.5em 2em;
+}
+.pomotech li{
+  line-height: 1.5;
+  padding: 0.5em 0;
+}
+@media screen and (max-width: 1024px){
+
+    .contents{
+        width:600px;
+    }
+}
+@media screen and (max-width: 767px){
+    .left-brank{
+        width:0;
+    }
+    .houshu{
+        width:300px;
+    }
+    .contents{
+        width:400px;
+        
+    }
+    .mainpomo{
+       margin-left:-70px;
+    }
+}

@@ -70,5 +70,17 @@ class GraphView(generic.TemplateView):
 class SetumeiView(generic.TemplateView):
     template_name="setumei.html"
 
+class KihonView(generic.TemplateView):
+    template_name="kihon.html"
 
-    
+class HoushuView(generic.TemplateView):
+    template_name = "houshu.html"
+
+class SitumonactionView(generic.TemplateView):
+    template_name = "situmonaction.html"
+
+class IfthenView(generic.TemplateView):
+    template_name = "ifthen.html"
+
+class TechnicView(generic.TemplateView):
+    template_name = "technic.html"

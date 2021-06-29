@@ -17,10 +17,10 @@ footer {
 }
 
 .clock {
-    margin-top:50px;
+    margin-top:30px;
     margin-bottom:50px;
-    margin-left:  190px;
-    font-size: 5rem;
+    margin-left:  210px;
+    font-size: 4rem;
     line-height: 1;
     display: flex;
     align-items: center;
@@ -30,41 +30,54 @@ footer {
    
   }
   .timerstart{
-      position:absolute;
-      left:130;
-      font-size: 1rem;
-      display: inline-block;
-      padding: 0.5em 0.5em 0.3em;
-      color: #ff3399;
-      border: double 4px #ff3399;
-      background-color: #ffffff;
-      cursor: pointer;
-      align-items: left;
-      width:130.49px;
-      margin-right: 40px;
-      z-index: 3;
+    position:absolute;
+    left:130;
+    font-size: 0.9rem;
+    display: inline-block;
+    padding: 0.2em 0.2em 0.2em;
+    color: white;
+    border: double 4px white;
+    background-color: transparent;
+    cursor: pointer;
+    align-items: left;
+    width:100.49px;
+    margin-right: 40px;
+    z-index: 3;
   }
   .reset{
-      position:absolute;
-      left: 0;
-      right: -220;
-      margin: auto;
-      font-size: 1rem;
-      display: inline-block;
-      padding: 0.5em 1em 0.3em;
-      color: #ff3399;
-      border: double 4px #ff3399;
-      background-color: #ffffff;
-      cursor: pointer;
-      width:130.49px;
-      z-index: 3;
+    position:absolute;
+    left: 0;
+    right: -220;
+    margin: auto;
+    font-size: 0.9rem;
+    display: inline-block;
+    padding: 0.2em 0.2em 0.2em;
+    color: white;
+    border: double 4px white;
+    background-color: transparent;
+    cursor: pointer;
+    width:100.49px;
+    z-index: 3;
   }
+  .pomosettei{
+      position:relative;
+      margin:0 auto;
+      width:600px;
+      opacity: 0.8;
+  }
+  .article-pomo{
+    margin-top:20px;
+    display:flex;
+    margin-left:100px;
+ }
+ .mainpomo{
+     width:800px;
+     margin-right:80px
+ }
   .pomodorotimer{
       position:relative;
       margin: 0 auto;
-      width:600px;
-      height:15rem;
-      opacity: 0.8;
+      height:12rem;
       text-align: center;
       background-color: #3969c4;
       border: 1px solid #3c7cb1;
@@ -72,11 +85,22 @@ footer {
                   0 0 4px rgba(0, 0, 0, .8) inset,
                   2px 2px 2px rgba(0, 0, 0, .4);
       color: #fff;
-
+      z-index:-2;
+  }
+  .sheet{
+    width:576.8px;
+    margin:60 20 auto;
+    z-index: 3;
+  }
+  .kihon{
+    z-index:1;
+  }
+  .jissen{
+    z-index:1;
   }
   .pomobrock1{
-      width:576.8px;
-      margin:20 auto
+      width:600px;
+      margin:40 auto
   }
   .pomobrock2{
     margin:20 auto
@@ -98,6 +122,7 @@ footer {
       text-align: center;
       width: 600px;
       height:250px;
+      z-index:-1;
   }
   #sentaku{
       color:black
@@ -164,16 +189,8 @@ footer {
     }
     /* 画面が小さいときは保留 */
 
-    .contents{
-        margin-top:150px;
-        margin-left:100px;
-    }
-    .contents h3{
-        padding: 1rem 2rem;
-        border-top: 3px solid #000;
-        border-bottom: 3px solid #000;
-        width:800px;
-    }
+
+
     #gamen1{
         width:600px;
     }
@@ -233,11 +250,42 @@ footer {
         box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
         text-shadow: 0 1px 0 rgba(0,0,0,0.2);
     }
+    .audio_btn{
+        position:absolute;
+        left: 400px;
+        top:110px;
+        width:150px;
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        text-decoration: none;
+        color: #FFF;
+        background: #03A9F4;/*色*/
+        border: solid 1px #0f9ada;/*線色*/
+        border-radius: 4px;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+        text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    }
+    .audio_del{
+        
+        position:absolute;
+        left: 400px;
+        top:110px;
+        width:150px;
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        text-decoration: none;
+        color: #FFF;
+        background: #03A9F4;/*色*/
+        border: solid 1px #0f9ada;/*線色*/
+        border-radius: 4px;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+        text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    }
     .list_action li{
         position: relative;
         list-style-type: none!important;/*ポチ消す*/
         padding: 0.5em 0.5em 0.5em 0.5em;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
         line-height: 1.5;
         background: #dbebf8;
         vertical-align: middle;
@@ -245,7 +293,7 @@ footer {
         border-radius: 15px 0px 0px 15px;/*左側の角丸く*/
     }
     .midasi{
-        margin-top:30px;
+        margin-top:20px;
         padding: 0.5rem 2rem;
         border-left: 4px double #000;
         }
@@ -264,3 +312,11 @@ footer {
         width:100px;
         margin-right:10px;
     }
+    /*ちょっと保留
+    @media screen and (max-width: 1024px){
+
+        .mainpomo{
+            width:500px;
+        }
+    }
+    */

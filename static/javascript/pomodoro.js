@@ -6,24 +6,33 @@ var timeflg = 0;
 //ポモドーロのカウンター
 var count = 0;
 
-var min=25;
-var sec=0;
+
 //ポモドーロタイマーの時間
 var minutes = document.getElementById('minutes');
 var seconds= document.getElementById('seconds');
 var opa = document.getElementById('pomodorotimer');
-//ポモドーロ設定画面の時間変数
-let timer_minutes = 25;
-let kyukei=5;
-let tyokyukei=25;
 
+//ポモドーロ設定画面の時間変数
+let timer_minutes = document.getElementById("timer_minutes").value;
+let kyukei=document.getElementById("timer_kyukei").value;
+let tyokyukei=document.getElementById("timer_tyokyukei").value;
+
+var min=timer_minutes;
+var sec=0;
+if(timer_minutes<10){
+    minutes.innerText = "0" + timer_minutes;
+}else{
+    minutes.innerText = timer_minutes;
+}
 //タイマーの時間変更timer_okを押したときの処理
 $("#timer_ok").click(function(){
     timer_minutes = document.getElementById("timer_minutes").value;
     kyukei = document.getElementById("timer_kyukei").value;
     tyokyukei = document.getElementById("timer_tyokyukei").value;
-
-    document.getElementById("modal_minutes").innerText=timer_minutes;
+    if(document.getElementById("modal_minutes")!=null){
+        document.getElementById("modal_minutes").innerText=timer_minutes;
+    }
+    
     if(timer_minutes<10){
         minutes.innerText = "0" + timer_minutes;
     }else{
@@ -38,7 +47,7 @@ $("#timer_ok").click(function(){
     start.innerHTML="start";
     seconds.innerText = "00";
     sec=0;
-    opa.style.opacity = 0.8;
+    opa.style.opacity = 1;
   //document.getElementById('counter').innerText = 0;
     stopInterval();
     startTimer = undefined;
@@ -76,7 +85,8 @@ reset.addEventListener('click', function(){
     min=timer_minutes;
     seconds.innerText = "00";
     sec=0;
-    opa.style.opacity = 0.8;
+    opa.style.opacity = 1;
+    count=0;
   //document.getElementById('counter').innerText = 0;
     stopInterval();
     startTimer = undefined;
@@ -113,7 +123,7 @@ function timer(){
     
 
     //Increment Counter by one if one full cycle is completed
-    if(minutes.innerText == 0 && sec == 0){
+    if(minutes.innerText == "00" && sec == 0){
         if(timeflg==0){
             if(count==3){
                 minutes.innerText = tyokyukei;
@@ -142,12 +152,16 @@ function timer(){
                 $('#exampleModalCenter').modal();
             }
         }else{
-            minutes.innerText = timer_minutes;
+            if(timer_minutes<10){
+                minutes.innerText = "0" + timer_minutes;
+            }else{
+                minutes.innerText = timer_minutes;
+            }
             min=timer_minutes;
             seconds.innerText = "00";
             sec=0;
             timeflg = 0;
-            opa.style.opacity = 0.8;
+            opa.style.opacity = 1;
             count++;
         }
         //document.getElementById('counter').innerText++;
@@ -178,18 +192,18 @@ onload = function() {
     
     /* rectangle */
     cvs.strokeStyle = "yellow";
-    cvs.lineWidth = 10;
+    cvs.lineWidth = 9;
     cvs.beginPath(); /* 図形を描き始めることを宣言(楕円) */
-    cvs.scale(1,.45);
-    cvs.arc(1000, 640, 570, openradius * Math.PI / 180, 360 * Math.PI / 180, false);
+    cvs.scale(1,.4);
+    cvs.arc(990, 570, 500, openradius * Math.PI / 180, 360 * Math.PI / 180, false);
     cvs.stroke(); /* 描いた図形を線で表示させる */
     cvs.strokeStyle = "#7fff00";
     cvs.lineWidth = 10;
     cvs.beginPath(); /* 図形を描き始めることを宣言(楕円) */
-    cvs.arc(1000, 640, 560, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
+    cvs.arc(990, 570, 490, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
     cvs.stroke(); /* 描いた図形を線で表示させる */
     cvs.beginPath(); /* 図形を描き始めることを宣言(楕円) */
-    cvs.arc(1000, 640, 580, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
+    cvs.arc(990, 570, 510, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
     cvs.stroke(); /* 描いた図形を線で表示させる */
   }
 
@@ -197,18 +211,18 @@ onload = function() {
     cvs.clearRect(0,0,1822,796);
     if(openradius==(360)){
         openradius == 0;
-    }else{
-        if(timeflg==0){
-            //timer_minutes分×60秒
-            openradius = openradius + (360/(timer_minutes*60));
-        }else if(timeflg==1){
-            //kyukei分×60秒
-            openradius = openradius + (360/(kyukei*60));
-        }else{
-            //25分×60秒
-            openradius = openradius + (360/(tyokyukei*60));
-        }
     }
+    if(timeflg==0){
+        //timer_minutes分×60秒
+        openradius = openradius + (360/(timer_minutes*60));
+    }else if(timeflg==1){
+        //kyukei分×60秒
+        openradius = openradius + (360/(kyukei*60));
+    }else{
+         //25分×60秒
+        openradius = openradius + (360/(tyokyukei*60));
+    }
+    
     draw();
   }
 
@@ -289,22 +303,52 @@ $("#appendTest").click(function(){
 $("#haguruma").click(function(){
     $( '#settei' ).slideToggle() ;
 })
-//休憩(焚火の動画を表示する）
-$("#kyukei").click(function(){
+ //休憩(焚火の動画を表示する）
+ $("#kyukei").click(function(){
 
     document.getElementById("con-nav").style.display="none";
     document.getElementById("messageblock").style.display="none";
     document.getElementById("pomodorotimer").style.display="none";
     document.getElementById("kyukeigamen").style.display="block";
-})
-//休憩終了処理
-$("#kyukeiend").click(function(){
+    document.getElementById("audio_btn").style.display="block";
+    document.getElementById("audio_del").style.display="none";
+
+    //音をだしたかったがchromeの使用上無理だったので音を出す用のボタンを新たに作成する
+    //music.loop = true;
+    //music.play();
+    //randommusic.loop = true;
+    //randommusic.play();
+      
+    })
+    //休憩終了処理
+    $("#kyukeiend").click(function(){
     document.getElementById("con-nav").style.display="block";
     document.getElementById("messageblock").style.display="block";
     document.getElementById("pomodorotimer").style.display="block";
     document.getElementById("kyukeigamen").style.display="none";
-})
-
+    music.pause();
+    music.currentTime = 0;
+    randommusic.pause();
+    randommusic.currentTime = 0;
+    $('audio').each(function() {
+        $(this).get(0).pause();
+        }); 
+    })
+    $('.audio_btn').on('click', function(){
+        $('audio').each(function() {
+        $(this).get(0).pause();
+        }); $(this).prev().get(0).currentTime = 0;
+        $(this).prev().get(0).play();
+        document.getElementById("audio_btn").style.display="none";
+        document.getElementById("audio_del").style.display="block";
+    });
+    $('.audio_del').on('click', function(){
+        $('audio').each(function() {
+        $(this).get(0).pause();
+        }); 
+        document.getElementById("audio_btn").style.display="block";
+        document.getElementById("audio_del").style.display="none";
+    });
 //ifthenルールの文字の設定画面を表示する
 $("#settei2").click(function(){
     $( '#if_settei' ).slideToggle() ;

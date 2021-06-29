@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}質問型アクションとは？|最新の生産性を上げるテクニックをADHD男がアプリ化するサイト{% endblock %}
+
+{% block header%}
+
+<div class="article">
+    <div class="left-brank"></div>
+    <div>
+        <section class="contents">
+            <h3>質問型アクションとは</h3>
+            <br>
+            　質問型アクションとは報酬感覚プランニングと同様にパレオな男さんの著書「ヤバい集中力」にて書かれている<br>
+            これからやることを具体的に質問形式で書くことで自分がその作業をする確率をアップさせるテクニックです。
+            <br>
+            <br>
+            <h3>アプリ内での使用方法</h3>
+            <img src="{% static 'img/situmonaction1.PNG' %}" width="70%">
+            <br><br>
+            項目を入力してアプリ内の右端のボタンを押すと入力内容がリスト上に表示されます。
+            例のように単純に「数学の勉強をする」よりも「○○は自分の部屋の机の上で数学の教科書２２ページを開いて勉強するか？」の方が<br>
+            その作業をする確率が上がります。
+            <br><br>
+            <img src="{% static 'img/situmonaction2.PNG' %}" width="70%">
+            <br>
+            
+        </section>
+    </div>
+    <!-- サイドバーをここに挿入-->
+    {% include 'mokuji.html' %}
+</div>
+{% endblock %}

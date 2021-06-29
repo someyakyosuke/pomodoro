@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}報酬感覚プランニングシート|最新の生産性を上げるテクニックをADHD男がアプリ化するサイト(ポモドーロタイマー）{% endblock %}
+
+{% block header%}
+<div class="article">
+    <div class="left-brank"></div>
+    <section class="contents">
+        <div id="kihonsettei" class="kihonsettei">
+            <p>報酬感覚プランニング基本設定シート</p>
+            <table>
+                <tr class="sumaho">
+                <th>1.ターゲット</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai">1.ターゲット</th>
+                    <th><textarea  id="target" class="houshu auto-save" placeholder="(Q.どうしても集中力が続かない作業の中から、自分にとってもっとも重要なものを選んで書き込んでください)"></textarea></th>
+                </tr>
+                <tr class="sumaho">
+                    <th>2.重要度チェック</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai">2.重要度チェック</th>
+                    <th><textarea id="juyoudo" class="houshu auto-save" placeholder="(Q.上記の目標を達成しなければならない理由のうち、もっとも大事なものをひとつだけ選んで書き込んでください）"></textarea></th>
+                </tr>
+                <tr class="sumaho">
+                    <th>3.具象イメージング</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai" >3.具象イメージング</th>
+                    <th><textarea id="gushou" class="houshu auto-save" placeholder="(Q.1で選んだ目標を、より具体的に、頭の中で映像を浮かべやすい内容に変えてください"></textarea></th>
+                </tr>
+                <tr class="sumaho">
+                    <th>4.リバースプランニング</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai" >4.リバースプランニング</th>
+                    <th><textarea id="reverse1" class="houshu auto-save" placeholder="(Q.1で選んだ目標を「達成した未来」から現在にさかのぼる形で、いくつかの短期目標を決めてください）"></textarea></th>
+                </tr>
+                <tr class="sumaho">
+                    <th>5.デイリータスク設定</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai" >5.デイリータスク設定</th>
+                    <th><textarea id="daily1" class="houshu auto-save" placeholder="(Q.4で決めた短期目標のなかから、もっとも締め切りが近いものを選び、それを達成するために毎日やるべきタスクをいくつか考えてください）"></textarea></th>
+                </tr>
+
+            </table>
+            <br>
+            <input type="button" value="クリア" onclick="clearText1()" />
+        </div>
+        <br>
+        <div id="jissensettei" class="jissensettei">
+            <p>報酬感覚プランニング実践設定シート</p>
+            <table>
+                <tr class="sumaho">
+                    <th>1.デイリータスク設定</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai" >1.デイリータスク設定</th>
+                    <th><textarea id="daily2" class="houshu auto-save" placeholder="(Q.基本設定ワークシートで考えたデイリータスクのなかから、「その日のうちに手をつけねばならないもの」や、「最長でも２~３時間で終わりそうなもの」だけに的を絞り、３つ~５つほどピックアップしてください)"></textarea></th>
+                </tr>
+                <tr class="sumaho">
+                    <th>2.障害コントラスト</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai" >2.障害コントラスト</th>
+                    <th><textarea id="shougai" class="houshu auto-save" placeholder="(Q.上記のデイリータスクを達成する際に、発生しそうなトラブルを書き出してください）"></textarea></th>
+                </tr>
+                <tr class="sumaho">
+                    <th>3.障害フィックス</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai" >3.障害フィックス</th>
+                    <th><textarea id="shougaifix" class="houshu auto-save" placeholder="(Q.2で書き出したトラブルに対して、あなたが取れそうな対策を考えて書き込みましょう）"></textarea></th>
+                </tr>
+                <tr class="sumaho">
+                    <th>4.質問型アクション</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai" >4.質問型アクション</th>
+                    <th><textarea id="situmonaction" class="houshu auto-save" placeholder="(Q.1で選んだデイリータスクについて、それぞれ次のフォーマットに変換してください）[自分の名前]は、[時間]に[場所]で[デイリータスク]をするか？"></textarea></th>
+                </tr>
+                <tr class="sumaho">
+                    <th>5.現実イメージング</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai" >5.現実イメージング</th>
+                    <th><textarea id="genjitu" class="houshu auto-save" placeholder="(Q.4の質問型アクションを達成するまでのプロセスを、できるだけリアルに頭の中に思い描いてください）"></textarea></th>
+                </tr>
+                <tr class="sumaho">
+                    <th>6.固定式ビジュアルリマインダー</th>
+                </tr>
+                <tr>
+                    <th class="hyoudai">6.固定式ビジュアルリマインダ―</th>
+                    <th class="houshu">4の質問型アクションを思い出させるものを、目に見える場所に置きましょう</th>
+                </tr>
+            </table>
+            <br>
+            <input type="button" value="クリア" onclick="clearText2()" />
+            <br>
+            <br>
+            <p>※入力した内容はブラウザに自動保存されます。</p>
+
+            
+        </div>
+    </section>
+    <!-- サイドバーをここに挿入-->
+    {% include 'mokuji.html' %}
+</div>
+<!--ブラウザ上の変更をブラウザのデータベースに保存できるように設定-->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'javascript/savy.js' %}"></script>
+<script src="https://unpkg.com/dexie@3.0.2/dist/dexie.min.js"></script>
+<script>
+$('.auto-save').savy('load',function(){
+  console.log("All data from savy are loaded");
+});
+
+function dstry(){
+  //$('.auto-save').savy('destroy') --> can be used without callback
+  $('.auto-save').savy('destroy',function(){
+    console.log("All data from savy are Destroyed");
+    window.location.reload();
+  });}
+
+//クリアボタンを押すと、記載したデータがクリアされるよう記述
+const sv = "savy-";
+
+function clearText1() {
+    
+    let target = document.getElementById("target");
+    let juyoudo = document.getElementById("juyoudo");
+    let gushou = document.getElementById("gushou");
+    let reverse1 = document.getElementById("reverse1");
+    let daily1 = document.getElementById("daily1");
+    target.value = '';
+    juyoudo.value = '';
+    gushou.value = '';
+    reverse1.value = '';
+    daily1.value = '';
+    localStorage.removeItem(sv+"target");
+    localStorage.removeItem(sv+"juyoudo");
+    localStorage.removeItem(sv+"gushou");
+    localStorage.removeItem(sv+"reverse1");
+    localStorage.removeItem(sv+"daily1");
+}
+
+function clearText2() {
+    let daily2 = document.getElementById("daily2");
+    let shougai = document.getElementById("shougai");
+    let shougaifix = document.getElementById("shougaifix");
+    let situmonaction = document.getElementById("situmonaction");
+    let genjitu = document.getElementById("genjitu");
+	daily2.value = '';
+    shougai.value = '';
+    shougaifix.value = '';
+    situmonaction.value = '';
+    genjitu.value = '';
+    localStorage.removeItem(sv+"daily2");
+    localStorage.removeItem(sv+"shougai");
+    localStorage.removeItem(sv+"shougaifix");
+    localStorage.removeItem(sv+"situmonaction");
+    localStorage.removeItem(sv+"genjitu");
+}
+    
+</script>
+
+{% endblock %}
+
+{% block contents %}
+
+{% endblock %}

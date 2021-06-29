@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}ポモドーロタイマー＋あなたの集中力を見える化 | pomodoro_memory{% endblock %}
+{% block title %}ポモドーロタイマー|最新の生産性を上げるテクニックをADHD男がアプリ化するサイト{% endblock %}
 
 {% block header%}
     
@@ -57,100 +57,198 @@
 
           <!-- 
            -->
-
+    
     {% endif %}
-    <div class="kyukeigamen" id="kyukeigamen">
-      <video id="fire" class="video" src="{% static 'video/fire_loop.mp4' %}" autoplay playsinline muted loop></video>
-      <button type="button" class="kyukeiend" id="kyukeiend">休憩終了</button>
-    </div>
-    <div id="pomodorotimer" class="pomodorotimer">
-      <button type="button" class="btn" id="haguruma">
-        <img  src="{% static 'img/haguruma.png' %}" alt="設定">
-      </button>
-      <!--設定アイコンをクリックしたときの設定画面を記述-->
-      <div class="settei" id=settei>
-        <br>
-        <p>タイマーの時間</p>
-        <input id="timer_minutes" min="1" max="99" type="number" value=25>
-        <p>休憩時間</p>
-        <input id="timer_kyukei" min="1" max="99" type="number" value=5>
-        <p>長休憩</p>
-        <input id="timer_tyokyukei" min="1" max="99" type="number" value=25>
-        <br>
-        <br>
-        <button id="timer_ok">OK</button>
-      </div>
-      <canvas id="rectangle"></canvas>
-      <!-- worktimer -->
-        <div class="clock" id="js-clock">
-          <span id="minutes">25</span>
-          <span class="semicron">:</span>
-          <span id="seconds">00</span>
+
+      <div class="kyukeigamen" id="kyukeigamen">
+        <video id="fire" class="video" src="{% static 'video/fire_loop.mp4' %}" autoplay playsinline muted loop></video>
+        <button type="button" class="kyukeiend" id="kyukeiend" onclick="stop()">休憩終了</button>
+        <!-- ここにオーディオを追加-->
+        <div class="audio">
+          <audio src="{% static 'video/fire1.mp3' %}" loop preload="auto"></audio>
+          <button type="button" class="audio_btn" id="audio_btn" alt="button1">音を出す</button>
+          <button type="button" class="audio_del" id="audio_del" alt="button2">音を消す</button>
         </div>
+      </div>
+      <!--ここから目次が表示できるように修正-->
+  <div class="article-pomo">
+    <div class="left-brank"  id="left-brank"></div>
+    <div class="mainpomo">
+      <div class="pomosettei">
+      <div id="pomodorotimer" class="pomodorotimer">
+        <button type="button" class="btn" id="haguruma">
+          <img  src="{% static 'img/haguruma.png' %}" alt="設定">
+        </button>
         
-      <!-- breaktimer--> 
-        <div class="pomobtn">
-          <button class="timerstart" id="start">START</button>
-          <button class="reset" id="reset">RESET</button>
-          <button type="button" class="kyukei" id="kyukei">休憩</button>
-        </div>
-
-      </div>
-      <!--質問型アクションを以下に記述-->
-      <div class="pomobrock1">
-        <h4 class="midasi">質問型アクション</h4>
-        <div class="topic">
-          <h5 class="situmon" >だれが</h5>
-          <h5 class="situmon" >いつ</h5>
-          <h5 class="situmon" >どこで</h5>
-          <h5 class="situmon" >どうするか？</h5>
-          <button type="button" id="appendSitumon">追加</button>
+        <canvas id="rectangle"></canvas>
+        <!-- worktimer -->
+          <div class="clock" id="js-clock">
+            <span id="minutes">25</span>
+            <span class="semicron">:</span>
+            <span id="seconds">00</span>
+          </div>
+          
+        <!-- breaktimer--> 
+          <div class="pomobtn">
+            <button class="timerstart" id="start">start</button>
+            <button class="reset" id="reset">reset</button>
+            <button type="button" class="kyukei" id="kyukei"　onclick="play()">休憩</button>
+          </div>
 
         </div>
-        <div class="topic">
-          <input id="who">
-          <input type="time" id="when">
-          <input id="where">
-          <input id="what">
-        </div>
-        <br>
-        <ul class="list_action" id="situmon_id">
+        <!--設定アイコンをクリックしたときの設定画面を記述-->
+        <div class="settei" id=settei>
           <br>
-          <li>(例）　(自分の名前)は18:30にリビングの机の上で英語の教科書63ページを開いて勉強するか？</li>
-
-        </ul>
-      </div>
-      <!-- if-thenルールの項目を以下に記述-->
-      <div class="pomobrock2">
-        <h4 class="midasi">if-thenルール　<button id="settei2"><img src="{% static 'img/haguruma.png' %}" alt="設定"></button></h4>   
-        <br>
-        <div class="if_settei" id="if_settei">
-          <input id="moshi" value="もし">
-          <input id="tara" value="たら">
-          <input id="ru2" value="る">
-          <button id="if_ok">OK</button>
-        </div>
-        <br>
-
-        <div class="topic">
-          <h3 id="if">もし</h3>
-          <input id="if1">
-          <h3 id="then">たら</h3>
-          <input id="then1">
-          <h3 id="ru">る</h3>
-          <button type="button" id="appendTest">追加</button>
-        </div>
-        <br>
-        <ul class="list_action" id="if_id">
+          <p>タイマーの時間</p>
+          <input class="auto-save" id="timer_minutes" min="1" max="99" type="number" value=25>
+          <p>休憩時間</p>
+          <input class="auto-save" id="timer_kyukei" min="1" max="99" type="number" value=5>
+          <p>長休憩</p>
+          <input class="auto-save" id="timer_tyokyukei" min="1" max="99" type="number" value=25>
           <br>
-          <li>(例）もしネットサーフィンがしたくなったら10回深呼吸をする</li>
-        </ul>
+          <br>
+          <button id="timer_ok">OK</button>
+        </div>
+              <!--報酬感覚プランニング基本設定シートと実戦設定シートのボタンを右端に追加-->
+        <div class="sheet">
+          <nobr>報酬感覚プランニング</nobr>
+          <button class="kihon" id="kihon" onclick="location.href='{% url 'pomodoroapp:kihon' %}#kihonsettei'">基本設定シート</button>
+          <button class="jissen" id="jissen" onclick="location.href='{% url 'pomodoroapp:kihon' %}#jissensettei'">実践設定シート</button>
+        </div>
       </div>
 
+        <!--質問型アクションを以下に記述-->
+        <div class="pomobrock1">
+          <h4 class="midasi">質問型アクション</h4>
+          <div class="topic">
+            <h5 class="situmon" >だれが</h5>
+            <h5 class="situmon" >いつ</h5>
+            <h5 class="situmon" >どこで</h5>
+            <h5 class="situmon" >どうするか？</h5>
+            <button type="button" id="appendSitumon">追加</button>
+
+          </div>
+          <div class="topic">
+            <input id="who">
+            <input type="time" value='now' id="when">
+            <h5 id="ni">に</h5>
+            <input id="where">
+            <input id="what">
+          </div>
+          <br>
+          <ul class="list_action" id="situmon_id">
+            <br>
+            <li>(例）　(自分の名前)は18:30にリビングの机の上で英語の教科書63ページを開いて勉強するか？</li>
+
+          </ul>
+        </div>
+        <!-- if-thenルールの項目を以下に記述-->
+        <div class="pomobrock1">
+          <h4 class="midasi">if-thenルール　<button id="settei2"><img src="{% static 'img/haguruma.png' %}" alt="設定"></button></h4>   
+          <br>
+          <div class="if_settei" id="if_settei">
+            <input id="moshi" value="もし">
+            <input id="tara" value="たら">
+            <input id="ru2" value="る">
+            <button id="if_ok">OK</button>
+          </div>
+          <br>
+
+          <div class="topic">
+            <h3 id="if">もし</h3>
+            <input id="if1">
+            <h3 id="then">たら</h3>
+            <input id="then1">
+            <h3 id="ru">る</h3>
+            <button type="button" id="appendTest">追加</button>
+          </div>
+          <br>
+          <ul class="list_action" id="if_id">
+            <br>
+            <li>(例）もしネットサーフィンがしたくなったら10回深呼吸をする</li>
+          </ul>
+        </div>
+        <!--集中を反らす欲求がでたときの１０か条-->
+        <div class="pomobrock1">
+          <h4 class="midasi">集中を反らす欲求が出たときの6か条</h4>
+          <ol>
+            <li>自分を責めない</li>
+            <p>失敗や情けなさを悩んでいる自分に対して友人が思いやりと理解を持って<br>アドバイスをしてきたところを想像しよう。</p>
+            <li>他人と比較しない</li>
+            <p>SNSでは人の人生の最も良い部分だけが投稿されます。それと比較するのは意味のないことです。</p>
+            <li>身体を動かす</li>
+            <p>アクティブレストを取り入れよう</p>
+            <li>牧草地のメタファー</li>
+            <p>あなたの感情はいうことを聞かない暴れ牛のようなものです。<br>その牛を狭いフェンスをたてて閉じ込めてしまうと、牛は自由を求めて暴れだして逆に被害が大きくなってしまいます。
+              <br>ここで本当にすべきは、牛に十分なサイズの牧草地を与えて、どれだけ自由に暴れまわっても問題が起きないようにしてやることです。
+            </p>
+            <li>食事</li>
+            <p>オリーブオイル、ブロッコリー、ブルーベリー、サーモン、クルミ、お茶等を積極的に食事に取り入れましょう。</p>
+            <li>深呼吸</li>
+            <p>心拍変動が大きいほど欲求には強くなります。呼吸を深くしてみましょう。</p>
+          </ol>
+        </div>
+      </div>
+      <div id="sidevarindex">
+        <!-- サイドバーをここに挿入-->
+         {% include 'mokuji.html' %}
+      </div>
+    </div>
 <!-- javascript -->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'javascript/pomodoro.js' %}"></script>
-<script src="{% static 'javascript/topic.js' %}"></script>
+
+
+<!--焚火の音を出すためにここに記載-->
+<script language="javascript" type="text/javascript">
+  const fire = "{% static 'video/fire1.mp3' %}";
+  const night = "{% static 'video/night3.mp3' %}";
+  var music = new Audio();
+  var randommusic = new Audio();
+  function init() {
+    music.preload = "auto";
+    music.src = fire;
+    music.load();
+    randommusic.preload = "auto";
+    randommusic.src = night;
+    randommusic.volume = 1.5;
+    randommusic.load();
+    
+
+    music.addEventListener("ended", function () {
+      music.currentTime = 0;
+      music.play();
+    }, false);
+    randommusic.addEventListener("ended", function () {
+      randommusic.currentTime = 0;
+      randommusic.play();
+    }, false);
+  }
+
+  init();
+
+ 
+</script>
+
+<script src="{% static 'javascript/savy.js' %}"></script>
+<script>
+  $('.auto-save').savy('load',function(){
+    console.log("All data from savy are loaded");
+  });
+  
+  function dstry(){
+    //$('.auto-save').savy('destroy') --> can be used without callback
+    $('.auto-save').savy('destroy',function(){
+      console.log("All data from savy are Destroyed");
+      window.location.reload();
+    });}
+
+  </script>
+  <script src="{% static 'javascript/pomodoro.js' %}"></script>
+  <script src="{% static 'javascript/topic.js' %}"></script>
+  
+  <script>
+
+  </script>
 {% endblock %}
 
 {% block contents %}
